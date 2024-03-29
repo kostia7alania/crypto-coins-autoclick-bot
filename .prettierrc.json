@@ -1,0 +1,9 @@
+{
+  "jsxSingleQuote": true,
+  "printWidth": 120,
+  "singleAttributePerLine": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "plugins": ["@ianvs/prettier-plugin-sort-imports"],
+  "importOrder": ["<BUILT_IN_MODULES>", "<THIRD_PARTY_MODULES>", "", "^@/components/(.*)$", "^@/utils/(.*)$", "^@/plugins/(.*)$", "", "^[./]", ""]
+}

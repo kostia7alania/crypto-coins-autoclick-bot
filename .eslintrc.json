@@ -1,0 +1,166 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:sonarjs/recommended",
+    "plugin:unicorn/recommended",
+    "plugin:jsonc/recommended-with-json",
+    "plugin:jsonc/recommended-with-jsonc",
+    "plugin:jsonc/recommended-with-json5",
+    "plugin:jsonc/prettier",
+    "prettier"
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "project": "tsconfig.json",
+    "tsconfigRootDir": "./",
+    "sourceType": "module",
+    // "extraFileExtensions": [".vue"],
+    "parser": "@typescript-eslint/parser"
+  },
+  "plugins": ["no-secrets", "import", "sonarjs", "unicorn", "@typescript-eslint", "prettier"],
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "project": "tsconfig.json"
+      }
+    }
+  },
+  "rules": {
+    "array-bracket-spacing": "error",
+    "default-case": "error",
+    "comma-dangle": ["error", "always-multiline"],
+    "no-else-return": "error",
+    "no-self-compare": "error",
+    "no-undef-init": "error",
+    "no-unneeded-ternary": "error",
+    "no-var": "error",
+    "object-curly-spacing": ["error", "always"],
+    "prefer-const": "error",
+    "quotes": ["error", "single"],
+
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/consistent-type-exports": "error",
+    "@typescript-eslint/consistent-type-imports": "error",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/member-ordering": [
+      "error",
+      {
+        "default": [
+          "static-field",
+          "decorated-field",
+          "abstract-field",
+          "instance-field",
+          "constructor",
+          "static-method",
+          "instance-method",
+          "abstract-method",
+          "decorated-method"
+        ]
+      }
+    ],
+    "@typescript-eslint/no-confusing-void-expression": "error",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-import-type-side-effects": "error",
+    "@typescript-eslint/no-invalid-void-type": "error",
+    "@typescript-eslint/no-loop-func": "error",
+    "@typescript-eslint/no-meaningless-void-operator": "error",
+    "@typescript-eslint/no-mixed-enums": "error",
+    "@typescript-eslint/no-non-null-asserted-nullish-coalescing": "error",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
+    "@typescript-eslint/no-unnecessary-condition": "error",
+    "@typescript-eslint/no-unsafe-unary-minus": "error",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/no-use-before-define": "error",
+    "@typescript-eslint/no-useless-empty-export": "error",
+    "@typescript-eslint/no-useless-template-literals": "error",
+    "@typescript-eslint/prefer-includes": "error",
+    "@typescript-eslint/prefer-readonly": "error",
+    "@typescript-eslint/type-annotation-spacing": "error",
+
+    "import/first": "error",
+    "import/no-unresolved": [
+      "error",
+      {
+        "ignore": [
+          // "\\.vue$",
+          "\\.svg$",
+          "\\env.json$"
+        ]
+      }
+    ],
+
+    "prettier/prettier": "error",
+
+    "sonarjs/cognitive-complexity": ["warn", 15],
+    "sonarjs/no-duplicate-string": "warn",
+    "sonarjs/no-identical-functions": "warn",
+
+    "unicorn/no-null": "off",
+    "unicorn/prefer-code-point": "off",
+    "unicorn/numeric-separators-style": "warn",
+    "unicorn/prevent-abbreviations": [
+      "warn",
+      {
+        "allowList": {
+          "env": true,
+          "e": true,
+          "acc": true,
+          "el": true,
+          "args": true,
+          "arg": true
+        }
+      }
+    ],
+    "unicorn/consistent-function-scoping": [
+      "error",
+      {
+        "checkArrowFunctions": false
+      }
+    ],
+    "unicorn/no-array-reduce": "off",
+    "unicorn/filename-case": "off",
+    "unicorn/explicit-length-check": "off",
+    "unicorn/prefer-spread": "off",
+    "unicorn/prefer-optional-catch-binding": "off",
+    "unicorn/no-array-callback-reference": "off",
+    "unicorn/no-array-for-each": "off",
+    "unicorn/no-useless-undefined": "off",
+    "unicorn/prefer-object-from-entries": "off",
+    "unicorn/require-array-join-separator": "off",
+    "unicorn/no-hex-escape": "off",
+    "unicorn/no-object-as-default-parameter": "off"
+  },
+  "ignorePatterns": [
+    "node_modules",
+    "vite.config.ts",
+    ".eslintrc.json",
+    "*.stories.ts",
+    "vitest.config.ts",
+    "dist",
+    ".cicd",
+    ".docker"
+  ],
+  "overrides": [
+    {
+      "files": ["*.json", "*.json5", "*.jsonc"],
+      "parser": "jsonc-eslint-parser"
+    }
+  ]
+}

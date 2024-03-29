@@ -1,0 +1,17 @@
+{
+  "recommendations": [
+    // shows errors
+    "usernamehw.errorlens",
+
+    // Lint-on-save with ESLint
+    // https://github.com/microsoft/vscode-eslint
+    "dbaeumer.vscode-eslint",
+
+    // Format-on-save with Prettier
+    // https://github.com/prettier/prettier-vscode
+    "esbenp.prettier-vscode",
+
+    // vitest
+    "vitest.explorer"
+  ]
+}

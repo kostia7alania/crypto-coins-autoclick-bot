@@ -1,0 +1,49 @@
+import { getWait } from '@/utils/getWait';
+import { simulateMouseClick } from '@/utils/simulateMouseClick';
+
+const buttonTexts = [
+  'Начать игру', // @OfficialLimeCoinBot
+  'Play', // @DOXcoin_BOT & @notcoin_bot
+  'Let’s go', // @notcoin_bot
+];
+
+export const goToAppFromTelegram = () => {
+  /**************
+   * COMMON CODE
+   **************/
+  const clickPlay = () => {
+    [...document.querySelectorAll('button')].find((e) => {
+      const content = e.textContent;
+      const hasText = buttonTexts.some((text) => content?.includes(text));
+
+      if (hasText) {
+        simulateMouseClick(e);
+
+        return true;
+      }
+    });
+  };
+
+  const getIframe = () => document.querySelector('iframe');
+
+  const start = async (): Promise<any> => {
+    if (getIframe()) return;
+
+    clickPlay();
+
+    await getWait(3000);
+    const iframe = getIframe();
+
+    if (!iframe) {
+      console.info('%c хуйня какая-то, начинай по новой', 'color: #64b5f6');
+
+      return start();
+    }
+
+    location.href = iframe.src
+      .replace('tgWebAppPlatform=weba', 'tgWebAppPlatform=ios')
+      .replace('tgWebAppPlatform=web', 'tgWebAppPlatform=ios');
+  };
+
+  start();
+};

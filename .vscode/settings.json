@@ -1,0 +1,47 @@
+{
+  // ===
+  // Files
+  // ===
+
+  "files.exclude": {
+    "**/*.log": true,
+    "**/*.log*": true
+  },
+
+  "files.associations": {
+    ".prettierrc.json": "jsonc"
+  },
+
+  // ===
+  // Event Triggers
+  // ===
+
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.validate": ["javascript", "javascriptreact", "json", "jsonc", "json5"],
+
+  // ===
+  // JS(ON)
+  // ===
+
+  "javascript.format.enable": false,
+  "json.format.enable": false,
+
+  // ===
+  // CSS
+  // ===
+
+  "css.validate": false,
+
+  // ===
+  // HTML
+  // ===
+
+  "html.format.enable": false,
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}

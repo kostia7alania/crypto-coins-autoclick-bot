@@ -1,0 +1,1 @@
+export { goToAppFromTelegram } from './goToAppFromTelegram';
