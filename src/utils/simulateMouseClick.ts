@@ -1,5 +1,5 @@
 const eventTypes = ['mouseover', 'mousedown', 'mouseup', 'click'] as const;
-export type EventType = (typeof eventTypes)[number];
+type EventType = (typeof eventTypes)[number];
 
 export const simulateMouseClick = (targetNode: HTMLElement) => {
   const triggerMouseEvent = (targetNode: HTMLElement, eventType: EventType) => {

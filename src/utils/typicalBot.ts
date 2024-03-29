@@ -1,4 +1,7 @@
 import { getRandom } from '../utils/getRandom';
+import { getWait } from './getWait';
+import { simulateMouseClick } from './simulateMouseClick';
+import { simulateTouch } from './simulateTouch';
 
 type Selectors = {
   coinClick: string;
@@ -10,10 +13,13 @@ export const goTypicalBot = (selectors: Selectors) => {
    * COMMON CODE
    **************/
 
-  const wait = (ms = getRandom(25, 400)) => new Promise((res) => setTimeout(res, ms));
-
   const clickCoin = () => {
-    (document.querySelector(selectors.coinClick) as HTMLElement).click();
+    const coinButton = document.querySelector(selectors.coinClick);
+    if (coinButton) {
+      simulateMouseClick(coinButton as HTMLElement);
+      simulateTouch(coinButton as HTMLElement);
+      return true;
+    }
   };
 
   const getCounts = () => {
@@ -31,9 +37,9 @@ export const goTypicalBot = (selectors: Selectors) => {
 
     while (getCounts()) {
       isInProgress = true;
-      clickCoin();
-      console.log(`click #${++count}`);
-      await wait();
+      if (clickCoin()) console.log(`click #${++count}`);
+      else console.log('fail click ');
+      await getWait(getRandom(25, 400));
       isInProgress = false;
     }
   };

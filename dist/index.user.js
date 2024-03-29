@@ -11,7 +11,7 @@
 
 // @match       https://webapp.limecoin.online/*
 
-// @version      1.0
+// @version      1.0.1
 // @author       t.me/dvachers_space
 // @description  29.03.2024, 13:33:33
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
@@ -20,118 +20,232 @@
 // @icon         https://cdn.joincommunity.xyz/clicker/moneta-small.png
 // ==/UserScript==
 
-const f = () => {
-  async function t() {
+const notCoin = () => {
+  const minimumEnergyForClick = 900;
+  const min_click_count = 30;
+  const max_click_count = 100;
+  const clickInterval = 500;
+  async function clickCoin() {
     try {
-      const e = document.querySelector('div[class^="_notcoin"]');
-      e && await new Promise((l) => {
-        e[Object.keys(e)[1]].onTouchStart(""), setTimeout(l, 100);
-      });
-    } catch {
+      const coinElement = document.querySelector('div[class^="_notcoin"]');
+      if (coinElement) {
+        await new Promise((resolve) => {
+          coinElement[Object.keys(coinElement)[1]].onTouchStart("");
+          setTimeout(resolve, 100);
+        });
+      }
+    } catch (error) {
     }
   }
-  async function r() {
-    const e = document.querySelector('img[class^="_root"]');
-    if (e)
+  async function clickRocket() {
+    const rocketElement = document.querySelector('img[class^="_root"]');
+    if (rocketElement) {
       try {
-        e[Object.keys(e)[1]].onClick();
-      } catch (l) {
-        console.error("Error clicking rocket:", l);
+        rocketElement[Object.keys(rocketElement)[1]].onClick();
+      } catch (error) {
+        console.error("Error clicking rocket:", error);
       }
+    }
   }
-  async function s() {
-    const e = document.querySelector('div[class^="_scoreCurrent"]');
-    let l = Number.parseInt(e.textContent);
-    await r();
-    const u = Math.floor(Math.random() * 71) + 30;
-    for (let m = 0; m < u && l > 900; m++)
-      await t(), l = Number.parseInt(e.textContent), console.info(`%c ${u}`, "color: #64b5f6");
+  async function autoClick() {
+    const scoreElement = document.querySelector('div[class^="_scoreCurrent"]');
+    let currentScore = Number.parseInt(scoreElement.textContent);
+    await clickRocket();
+    const numberOfClicks = Math.floor(Math.random() * (max_click_count - min_click_count + 1)) + min_click_count;
+    for (let index = 0; index < numberOfClicks; index++) {
+      if (currentScore > minimumEnergyForClick) {
+        await clickCoin();
+        currentScore = Number.parseInt(scoreElement.textContent);
+        console.info(`%c ${numberOfClicks}`, "color: #64b5f6");
+      } else {
+        break;
+      }
+    }
   }
-  setInterval(s, 500);
-}, a = (o = 25, n = 400) => Math.floor(Math.random() * n) + o, d = (o) => {
-  const n = (e = a(25, 400)) => new Promise((l) => setTimeout(l, e)), i = () => {
-    document.querySelector(o.coinClick).click();
-  }, c = () => {
-    const e = document.querySelector(o.counts)?.textContent;
-    return console.log(`counts: ${e}`), e ? +e : 0;
+  setInterval(autoClick, clickInterval);
+};
+
+const getRandom = (min = 25, max = 400) => Math.floor(Math.random() * max) + min;
+
+const getWait = (ms = getRandom(60, 123)) => new Promise((res) => setTimeout(res, ms));
+
+const eventTypes = ["mouseover", "mousedown", "mouseup", "click"];
+const simulateMouseClick = (targetNode) => {
+  const triggerMouseEvent = (targetNode2, eventType) => {
+    const clickEvent = document.createEvent("MouseEvents");
+    clickEvent.initEvent(eventType, true, true);
+    targetNode2.dispatchEvent(clickEvent);
   };
-  let t = !1, r = 0;
-  setInterval(async () => {
-    if (!t)
-      for (; c(); )
-        t = !0, i(), console.log(`click #${++r}`), await n(), t = !1;
-  }, 3e3);
-}, p = {
+  eventTypes.forEach((eventType) => {
+    triggerMouseEvent(targetNode, eventType);
+  });
+};
+
+const touchEventTypes = ["touchstart", "touchmove", "touchend"];
+const simulateTouch = (targetNode) => {
+  const triggerTouchEvent = (targetNode2, eventType) => {
+    const touchObject = new Touch({
+      identifier: Date.now(),
+      target: targetNode2,
+      clientX: getRandom(22, 333),
+      clientY: getRandom(22, 333),
+      radiusX: 2.5,
+      radiusY: 2.5,
+      rotationAngle: 10,
+      force: 0.5
+    });
+    const touchEvent = new TouchEvent(eventType, {
+      cancelable: true,
+      bubbles: true,
+      touches: [touchObject],
+      targetTouches: [],
+      changedTouches: [touchObject],
+      shiftKey: true
+    });
+    targetNode2.dispatchEvent(touchEvent);
+  };
+  touchEventTypes.forEach((eventType) => {
+    triggerTouchEvent(targetNode, eventType);
+  });
+};
+
+const goTypicalBot = (selectors) => {
+  const clickCoin = () => {
+    const coinButton = document.querySelector(selectors.coinClick);
+    if (coinButton) {
+      simulateMouseClick(coinButton);
+      simulateTouch(coinButton);
+      return true;
+    }
+  };
+  const getCounts = () => {
+    const counts = document.querySelector(selectors.counts)?.textContent;
+    console.log(`counts: ${counts}`);
+    if (!counts)
+      return 0;
+    return +counts;
+  };
+  let isInProgress = false;
+  let count = 0;
+  const start = async () => {
+    if (isInProgress)
+      return;
+    while (getCounts()) {
+      isInProgress = true;
+      if (clickCoin())
+        console.log(`click #${++count}`);
+      else
+        console.log("fail click ");
+      await getWait(getRandom(25, 400));
+      isInProgress = false;
+    }
+  };
+  setInterval(start, 3e3);
+};
+
+const selectors$2 = {
   coinClick: 'button [src="/clicker/mainButton/basic/button.png"]',
   counts: ".text-xl.text-white.font-medium"
-}, k = () => {
-  d(p);
-}, g = {
+};
+const clixGame = () => {
+  goTypicalBot(selectors$2);
+};
+
+const selectors$1 = {
   coinClick: ".coin-btn",
   counts: "span.text-3xl.font-bold"
-}, w = () => {
-  d(g);
-}, y = () => {
-  if (!window.AuthorizationHeaderLimeCoin && (window.AuthorizationHeaderLimeCoin = prompt("Пожалуйста, скопируйте Authorization-хедер в запросах limeCoin"), !window.AuthorizationHeaderLimeCoin)) {
-    alert("не получилось? Если захочешь запустить скрипт - просто обнови страницу");
-    return;
-  }
-  const o = "https://api.limecoin.online/points/receive/", n = (t) => {
-    const r = a(1, 100);
-    return { clicks: r, points: r / (t ? 1e3 : 1e4) };
-  }, i = (t = {}) => new Promise((r) => {
-    const s = new XMLHttpRequest();
-    s.open("POST", o), s.setRequestHeader("Content-type", "application/json"), s.setRequestHeader("Authorization", window.AuthorizationHeaderLimeCoin ?? ""), s.send(JSON.stringify(t)), s.addEventListener("load", function() {
-      r(!0);
+};
+const doxCoin = () => {
+  goTypicalBot(selectors$1);
+};
+
+const selectors = {
+  coinClick: ".click-coin img",
+  counts: ".click-limit__left"
+};
+const limeCoin = () => {
+  goTypicalBot(selectors);
+  const url = "https://api.limecoin.online/points/receive/";
+  const getParameters = (isBoost) => {
+    const clicks = getRandom(1, 100);
+    const divider = isBoost ? 1e3 : 1e4;
+    return { clicks, points: clicks / divider };
+  };
+  const sendRequest = (newParameters = {}) => {
+    return new Promise((res) => {
+      const http = new XMLHttpRequest();
+      http.open("POST", url);
+      http.setRequestHeader("Content-type", "application/json");
+      http.setRequestHeader("Authorization", window.AuthorizationHeaderLimeCoin ?? "");
+      http.send(JSON.stringify(newParameters));
+      http.addEventListener("load", function() {
+        res(true);
+      });
     });
-  }), c = async (t) => {
-    let r = 0;
-    for (; await i(n(t)); )
-      console.log(`[${t ? "boost" : "regular"}] request sent: ${++r}`);
   };
-  window.go = c;
-}, h = (o = a(60, 123)) => new Promise((n) => setTimeout(n, o)), C = ["mouseover", "mousedown", "mouseup", "click"], b = (o) => {
-  const n = (i, c) => {
-    const t = document.createEvent("MouseEvents");
-    t.initEvent(c, !0, !0), i.dispatchEvent(t);
+  const go = async (isBoost) => {
+    if (!window.AuthorizationHeaderLimeCoin) {
+      window.AuthorizationHeaderLimeCoin = prompt("Пожалуйста, скопируйте Authorization-хедер в запросах limeCoin");
+      if (!window.AuthorizationHeaderLimeCoin) {
+        alert("не получилось? Если захочешь запустить скрипт - просто обнови страницу");
+        return;
+      }
+    }
+    let count = 0;
+    while (await sendRequest(getParameters(isBoost))) {
+      console.log(`[${isBoost ? "boost" : "regular"}] request sent: ${++count}`);
+    }
   };
-  C.forEach((i) => {
-    n(o, i);
-  });
-}, x = [
+  window.go = go;
+  console.log("limeCoin: если хочешь прямые апи-запросы - запускай в консоле: go() - без буста, go(true) - с бустом");
+};
+
+const buttonTexts = [
   "Начать игру",
   // @OfficialLimeCoinBot
   "Play",
   // @DOXcoin_BOT & @notcoin_bot
   "Let’s go"
   // @notcoin_bot
-], v = () => {
-  const o = () => {
-    [...document.querySelectorAll("button")].find((c) => {
-      const t = c.textContent;
-      if (x.some((s) => t?.includes(s)))
-        return b(c), !0;
+];
+const goToAppFromTelegram = () => {
+  const clickPlay = () => {
+    [...document.querySelectorAll("button")].find((e) => {
+      const content = e.textContent;
+      const hasText = buttonTexts.some((text) => content?.includes(text));
+      if (hasText) {
+        simulateMouseClick(e);
+        return true;
+      }
     });
-  }, n = () => document.querySelector("iframe"), i = async () => {
-    if (n())
-      return;
-    o(), await h(3e3);
-    const c = n();
-    if (!c)
-      return console.info("%c хуйня какая-то, начинай по новой", "color: #64b5f6"), i();
-    location.href = c.src.replace("tgWebAppPlatform=weba", "tgWebAppPlatform=ios").replace("tgWebAppPlatform=web", "tgWebAppPlatform=ios");
   };
-  i();
-}, _ = {
-  "web.telegram.org": v,
-  "webapp.limecoin.online": y,
-  "https://doxcoin.net/game": w,
-  "clicker.joincommunity.xyz": f,
-  "clix.game": k
-}, E = async () => {
-  const o = _[location.host];
-  if (typeof o == "function")
-    return o();
+  const getIframe = () => document.querySelector("iframe");
+  const start = async () => {
+    if (getIframe())
+      return;
+    clickPlay();
+    await getWait(3e3);
+    const iframe = getIframe();
+    if (!iframe) {
+      console.info("%c хуйня какая-то, начинай по новой", "color: #64b5f6");
+      return start();
+    }
+    location.href = iframe.src.replace("tgWebAppPlatform=weba", "tgWebAppPlatform=ios").replace("tgWebAppPlatform=web", "tgWebAppPlatform=ios");
+  };
+  start();
+};
+
+const hostMap = {
+  "web.telegram.org": goToAppFromTelegram,
+  "webapp.limecoin.online": limeCoin,
+  "https://doxcoin.net/game": doxCoin,
+  "clicker.joincommunity.xyz": notCoin,
+  "clix.game": clixGame
+};
+const __main_def__ = async () => {
+  const callback = hostMap[location.host];
+  if (typeof callback === "function")
+    return callback();
   console.log("nothing found");
 };
-E();
+__main_def__();
