@@ -4,7 +4,7 @@ import { goToAppFromTelegram } from './telegram';
 const hostMap: Record<string, () => any> = {
   'web.telegram.org': goToAppFromTelegram,
   'webapp.limecoin.online': limeCoin,
-  'https://doxcoin.net/game': doxCoin,
+  'doxcoin.net': doxCoin,
   'clicker.joincommunity.xyz': notCoin,
   'clix.game': clixGame,
 };

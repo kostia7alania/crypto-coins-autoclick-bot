@@ -11,9 +11,9 @@
 
 // @match       https://webapp.limecoin.online/*
 
-// @version      1.0.2
+// @version      1.0.4
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 29.03.2024, 23:22:19
+// @description  first release: 29.03.2024, 13:33:33, last release: 29.03.2024, 23:30:01
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -238,7 +238,7 @@ const goToAppFromTelegram = () => {
 const hostMap = {
   "web.telegram.org": goToAppFromTelegram,
   "webapp.limecoin.online": limeCoin,
-  "https://doxcoin.net/game": doxCoin,
+  "doxcoin.net": doxCoin,
   "clicker.joincommunity.xyz": notCoin,
   "clix.game": clixGame
 };
