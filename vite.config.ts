@@ -5,6 +5,7 @@ import { fileURLToPath, URL } from 'node:url';
 import { defineConfig, type UserConfig } from 'vite';
 
 import intro from './intro.txt?raw';
+import pkg from './package.json';
 
 // import dts from 'vite-plugin-dts';
 
@@ -70,8 +71,10 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
 
           const filePath = pathResolve(`./dist/${key}`);
           const data = fs.readFileSync(filePath, { encoding: 'utf8' });
-
-          fs.writeFileSync(filePath, `${intro}\n${data}`);
+          const introReplaced = intro
+            .replace('__VERSION_FROM_PACKAGE_JSON__', pkg.version)
+            .replace('__LAST_RELEASE__', new Date().toLocaleString('ru'));
+          fs.writeFileSync(filePath, `${introReplaced}\n${data}`);
         },
       },
     ],

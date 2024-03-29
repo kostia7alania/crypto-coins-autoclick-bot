@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Crypto Auto-Click Bot
+// @name         Crypto Coins Auto-Click Bot
 // @namespace    Violentmonkey Scripts
 // @match        https://clicker.joincommunity.xyz/clicker*
 // @match        https://clix.game/*
@@ -11,9 +11,9 @@
 
 // @match       https://webapp.limecoin.online/*
 
-// @version      1.0.1
+// @version      1.0.2
 // @author       t.me/dvachers_space
-// @description  29.03.2024, 13:33:33
+// @description  first release: 29.03.2024, 13:33:33, last release: 29.03.2024, 23:22:19
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
