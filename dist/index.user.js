@@ -13,9 +13,9 @@
 
 // @match       https://webapp.limecoin.online/*
 
-// @version      1.0.10
+// @version      1.0.11
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 30.03.2024, 22:10:42
+// @description  first release: 29.03.2024, 13:33:33, last release: 30.03.2024, 22:21:48
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -227,7 +227,8 @@ const limeCoin = () => {
 
 const selectors = {
   coinClick: '[class^="_tapContent"] img',
-  counts: '[class^="_value_"] h4'
+  counts: '[class^="_value_"] h4',
+  boosted: '[class^="_boostCoinBg_"]'
 };
 const tapSwap = () => {
   goTypicalBot(selectors);
