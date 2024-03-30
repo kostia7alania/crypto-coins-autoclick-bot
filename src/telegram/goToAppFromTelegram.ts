@@ -1,5 +1,6 @@
 import { getWait } from '@/utils/getWait';
 import { simulateMouseClick } from '@/utils/simulateMouseClick';
+import { simulateTouch } from '@/utils/simulateTouch';
 
 const buttonTexts = [
   'Начать игру', // @OfficialLimeCoinBot
@@ -19,6 +20,7 @@ export const goToAppFromTelegram = () => {
 
       if (hasText) {
         simulateMouseClick(e);
+        simulateTouch(e);
 
         return true;
       }
