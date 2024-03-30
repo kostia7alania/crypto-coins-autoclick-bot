@@ -11,9 +11,9 @@
 
 // @match       https://webapp.limecoin.online/*
 
-// @version      1.0.5
+// @version      1.0.6
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 30.03.2024, 10:07:19
+// @description  first release: 29.03.2024, 13:33:33, last release: 30.03.2024, 14:54:03
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -208,9 +208,11 @@ const buttonTexts = [
   "Начать игру",
   // @OfficialLimeCoinBot
   "Play",
-  // @DOXcoin_BOT & @notcoin_bot
-  "Let’s go"
+  // @DOXcoin_BOT & @notcoin_bot & @tapswap_bot
+  "Let’s go",
   // @notcoin_bot
+  "Start now!"
+  // @tapswap_bot
 ];
 const goToAppFromTelegram = () => {
   const clickPlay = () => {
@@ -224,11 +226,19 @@ const goToAppFromTelegram = () => {
     });
   };
   const getIframe = () => document.querySelector("iframe");
+  const clickLaunchIfIsset = () => {
+    const launch = [...document.querySelectorAll(".popup-button")].find((e) => e.textContent === "Launch");
+    if (launch) {
+      launch.click();
+    }
+  };
   const start = async () => {
     if (getIframe())
       return;
     clickPlay();
-    await getWait(3e3);
+    await getWait(2e3);
+    clickLaunchIfIsset();
+    await getWait(2e3);
     const iframe = getIframe();
     if (!iframe) {
       console.info("%c хуйня какая-то, начинай по новой", "color: #64b5f6");

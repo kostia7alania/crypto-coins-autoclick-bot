@@ -3,8 +3,9 @@ import { simulateMouseClick } from '@/utils/simulateMouseClick';
 
 const buttonTexts = [
   'Начать игру', // @OfficialLimeCoinBot
-  'Play', // @DOXcoin_BOT & @notcoin_bot
+  'Play', // @DOXcoin_BOT & @notcoin_bot & @tapswap_bot
   'Let’s go', // @notcoin_bot
+  'Start now!', // @tapswap_bot
 ];
 
 export const goToAppFromTelegram = () => {
@@ -26,12 +27,23 @@ export const goToAppFromTelegram = () => {
 
   const getIframe = () => document.querySelector('iframe');
 
+  const clickLaunchIfIsset = () => {
+    const launch = [...document.querySelectorAll('.popup-button')].find((e) => e.textContent === 'Launch');
+    if (launch) {
+      (launch as HTMLElement).click();
+    }
+  };
+
   const start = async (): Promise<any> => {
     if (getIframe()) return;
 
     clickPlay();
 
-    await getWait(3000);
+    await getWait(2000);
+
+    clickLaunchIfIsset();
+
+    await getWait(2000);
     const iframe = getIframe();
 
     if (!iframe) {
