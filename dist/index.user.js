@@ -4,16 +4,18 @@
 // @match        https://clicker.joincommunity.xyz/clicker*
 // @match        https://clix.game/*
 // @match        https://doxcoin.net/game*
+// @match        https://app.tapswap.ai/*
 
 // @match       https://web.telegram.org/k/#@OfficialLimeCoinBot
 // @match       https://web.telegram.org/k/#@DOXcoin_BOT
 // @match       https://web.telegram.org/k/#@notcoin_bot
+// @match       https://web.telegram.org/k/#@tapswap_bot
 
 // @match       https://webapp.limecoin.online/*
 
-// @version      1.0.8
+// @version      1.0.9
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 30.03.2024, 15:57:57
+// @description  first release: 29.03.2024, 13:33:33, last release: 30.03.2024, 21:46:04
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
