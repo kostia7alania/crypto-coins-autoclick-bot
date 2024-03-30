@@ -11,9 +11,9 @@
 
 // @match       https://webapp.limecoin.online/*
 
-// @version      1.0.4
+// @version      1.0.5
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 29.03.2024, 23:30:01
+// @description  first release: 29.03.2024, 13:33:33, last release: 30.03.2024, 10:07:19
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -125,6 +125,9 @@ const goTypicalBot = (selectors) => {
       return 0;
     return +counts;
   };
+  const getIsBoosted = () => {
+    return selectors.boosted && document.querySelector(selectors.boosted);
+  };
   let isInProgress = false;
   let count = 0;
   const start = async () => {
@@ -136,7 +139,7 @@ const goTypicalBot = (selectors) => {
         console.log(`click #${++count}`);
       else
         console.log("fail click ");
-      await getWait(getRandom(25, 400));
+      await (getIsBoosted() ? getWait(getRandom(1, 7)) : getWait(getRandom(25, 400)));
       isInProgress = false;
     }
   };
@@ -161,7 +164,8 @@ const doxCoin = () => {
 
 const selectors = {
   coinClick: ".click-coin img",
-  counts: ".click-limit__left"
+  counts: ".click-limit__left",
+  boosted: ".l-home.boost"
 };
 const limeCoin = () => {
   goTypicalBot(selectors);

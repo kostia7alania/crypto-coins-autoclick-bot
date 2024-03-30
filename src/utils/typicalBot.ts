@@ -6,6 +6,7 @@ import { simulateTouch } from './simulateTouch';
 type Selectors = {
   coinClick: string;
   counts: string;
+  boosted?: string;
 };
 
 export const goTypicalBot = (selectors: Selectors) => {
@@ -29,6 +30,9 @@ export const goTypicalBot = (selectors: Selectors) => {
     return +counts;
   };
 
+  const getIsBoosted = () => {
+    return selectors.boosted && document.querySelector(selectors.boosted);
+  };
   let isInProgress = false;
   let count = 0;
 
@@ -39,7 +43,7 @@ export const goTypicalBot = (selectors: Selectors) => {
       isInProgress = true;
       if (clickCoin()) console.log(`click #${++count}`);
       else console.log('fail click ');
-      await getWait(getRandom(25, 400));
+      await (getIsBoosted() ? getWait(getRandom(1, 7)) : getWait(getRandom(25, 400)));
       isInProgress = false;
     }
   };

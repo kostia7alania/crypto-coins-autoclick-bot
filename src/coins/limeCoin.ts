@@ -4,6 +4,7 @@ import { goTypicalBot } from '../utils/typicalBot';
 const selectors = {
   coinClick: '.click-coin img',
   counts: '.click-limit__left',
+  boosted: '.l-home.boost',
 };
 
 declare const window: {
