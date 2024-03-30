@@ -13,9 +13,9 @@
 
 // @match       https://webapp.limecoin.online/*
 
-// @version      1.0.9
+// @version      1.0.10
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 30.03.2024, 21:46:04
+// @description  first release: 29.03.2024, 13:33:33, last release: 30.03.2024, 22:10:42
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -71,9 +71,28 @@ const getRandom = (min = 25, max = 400) => Math.floor(Math.random() * max) + min
 
 const getWait = (ms = getRandom(60, 123)) => new Promise((res) => setTimeout(res, ms));
 
-const eventTypes = ["mouseover", "mousedown", "mouseup", "click"];
+const eventTypes = ["mouseover", "mousedown", "pointerdown", "pointerup", "mouseup", "click"];
+const simulateMouseEvent = (element, eventType) => {
+  const box = element.getBoundingClientRect();
+  const coordX = box.left + (box.right - box.left) / 2;
+  const coordY = box.top + (box.bottom - box.top) / 2;
+  element.dispatchEvent(
+    new MouseEvent(eventType, {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+      clientX: coordX,
+      clientY: coordY,
+      button: 0
+    })
+  );
+};
 const simulateMouseClick = (targetNode) => {
   const triggerMouseEvent = (targetNode2, eventType) => {
+    if (["pointerdown", "pointerup"].includes(eventType)) {
+      simulateMouseEvent(targetNode2, eventType);
+      return;
+    }
     const clickEvent = document.createEvent("MouseEvents");
     clickEvent.initEvent(eventType, true, true);
     targetNode2.dispatchEvent(clickEvent);
