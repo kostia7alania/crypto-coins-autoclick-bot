@@ -22,3 +22,15 @@
 
 - https://t.me/dvachers_money
 - https://t.me/dvachers_space/3/8
+
+# Добавить в закладки + в стартовые в Anty Browser:
+
+limeСoin::https://t.me/OfficialLimeCoinBot?start=120855841
+
+doxCoin::https://t.me/DOXcoin_BOT?start=rl_120855841
+
+notCoin::https://t.me/notcoin_bot?start=r_576167_2961097
+
+clixGame::https://clix.game/?ref=6406
+
+tapSwap::https://t.me/tapswap_bot?start=r_120855841
