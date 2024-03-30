@@ -11,9 +11,9 @@
 
 // @match       https://webapp.limecoin.online/*
 
-// @version      1.0.6
+// @version      1.0.7
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 30.03.2024, 14:54:03
+// @description  first release: 29.03.2024, 13:33:33, last release: 30.03.2024, 15:44:36
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -146,29 +146,29 @@ const goTypicalBot = (selectors) => {
   setInterval(start, 3e3);
 };
 
-const selectors$2 = {
+const selectors$3 = {
   coinClick: 'button [src="/clicker/mainButton/basic/button.png"]',
   counts: ".text-xl.text-white.font-medium"
 };
 const clixGame = () => {
-  goTypicalBot(selectors$2);
+  goTypicalBot(selectors$3);
 };
 
-const selectors$1 = {
+const selectors$2 = {
   coinClick: ".coin-btn",
   counts: "span.text-3xl.font-bold"
 };
 const doxCoin = () => {
-  goTypicalBot(selectors$1);
+  goTypicalBot(selectors$2);
 };
 
-const selectors = {
+const selectors$1 = {
   coinClick: ".click-coin img",
   counts: ".click-limit__left",
   boosted: ".l-home.boost"
 };
 const limeCoin = () => {
-  goTypicalBot(selectors);
+  goTypicalBot(selectors$1);
   const url = "https://api.limecoin.online/points/receive/";
   const getParameters = (isBoost) => {
     const clicks = getRandom(1, 100);
@@ -202,6 +202,14 @@ const limeCoin = () => {
   };
   window.go = go;
   console.log("limeCoin: если хочешь прямые апи-запросы - запускай в консоле: go() - без буста, go(true) - с бустом");
+};
+
+const selectors = {
+  coinClick: '[class^="_tapContent"] img',
+  counts: '[class^="_value_"] h4'
+};
+const tapSwap = () => {
+  goTypicalBot(selectors);
 };
 
 const buttonTexts = [
@@ -254,7 +262,8 @@ const hostMap = {
   "webapp.limecoin.online": limeCoin,
   "doxcoin.net": doxCoin,
   "clicker.joincommunity.xyz": notCoin,
-  "clix.game": clixGame
+  "clix.game": clixGame,
+  "app.tapswap.ai": tapSwap
 };
 const __main_def__ = async () => {
   const callback = hostMap[location.host];

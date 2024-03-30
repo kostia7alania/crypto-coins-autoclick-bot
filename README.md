@@ -16,6 +16,7 @@
 2. [doxCoin](https://t.me/DOXcoin_BOT?start=rl_120855841)
 3. [notCoin](https://t.me/notcoin_bot?start=r_576167_2961097)
 4. [clixGame](https://clix.game/?ref=6406)
+5. [tapSwap](https://t.me/tapswap_bot?start=r_120855841)
 
 ## Feedback
 

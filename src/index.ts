@@ -1,4 +1,4 @@
-import { clixGame, doxCoin, limeCoin, notCoin } from './coins';
+import { clixGame, doxCoin, limeCoin, notCoin, tapSwap } from './coins';
 import { goToAppFromTelegram } from './telegram';
 
 const hostMap: Record<string, () => any> = {
@@ -7,6 +7,7 @@ const hostMap: Record<string, () => any> = {
   'doxcoin.net': doxCoin,
   'clicker.joincommunity.xyz': notCoin,
   'clix.game': clixGame,
+  'app.tapswap.ai': tapSwap,
 };
 
 const __main_def__ = async () => {
