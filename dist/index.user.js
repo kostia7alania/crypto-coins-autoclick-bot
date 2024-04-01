@@ -13,9 +13,9 @@
 
 // @match       https://webapp.limecoin.online/*
 
-// @version      1.0.11
+// @version      1.0.12
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 30.03.2024, 22:21:48
+// @description  first release: 29.03.2024, 13:33:33, last release: 02.04.2024, 01:41:15
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -139,6 +139,16 @@ const goTypicalBot = (selectors) => {
       return true;
     }
   };
+  const clickTabBotOkButton = () => {
+    if (!selectors.tabBotOkText)
+      return;
+    [...document.querySelectorAll("button")].forEach((e) => {
+      if (e.textContent === selectors.tabBotOkText) {
+        simulateMouseClick(e);
+        simulateTouch(e);
+      }
+    });
+  };
   const getCounts = () => {
     const counts = document.querySelector(selectors.counts)?.textContent;
     console.log(`counts: ${counts}`);
@@ -154,6 +164,7 @@ const goTypicalBot = (selectors) => {
   const start = async () => {
     if (isInProgress)
       return;
+    clickTabBotOkButton();
     while (getCounts()) {
       isInProgress = true;
       if (clickCoin())
@@ -228,7 +239,8 @@ const limeCoin = () => {
 const selectors = {
   coinClick: '[class^="_tapContent"] img',
   counts: '[class^="_value_"] h4',
-  boosted: '[class^="_boostCoinBg_"]'
+  boosted: '[class^="_large"]',
+  tapBotOkText: "Get it!"
 };
 const tapSwap = () => {
   goTypicalBot(selectors);

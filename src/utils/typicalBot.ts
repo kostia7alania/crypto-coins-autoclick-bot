@@ -7,6 +7,7 @@ type Selectors = {
   coinClick: string;
   counts: string;
   boosted?: string;
+  tabBotOkText?: string;
 };
 
 export const goTypicalBot = (selectors: Selectors) => {
@@ -21,6 +22,17 @@ export const goTypicalBot = (selectors: Selectors) => {
       simulateTouch(coinButton as HTMLElement);
       return true;
     }
+  };
+
+  const clickTabBotOkButton = () => {
+    if (!selectors.tabBotOkText) return;
+
+    [...document.querySelectorAll('button')].forEach((e) => {
+      if (e.textContent === selectors.tabBotOkText) {
+        simulateMouseClick(e as HTMLElement);
+        simulateTouch(e as HTMLElement);
+      }
+    });
   };
 
   const getCounts = () => {
@@ -38,6 +50,7 @@ export const goTypicalBot = (selectors: Selectors) => {
 
   const start = async () => {
     if (isInProgress) return;
+    clickTabBotOkButton();
 
     while (getCounts()) {
       isInProgress = true;
