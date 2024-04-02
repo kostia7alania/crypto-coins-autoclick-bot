@@ -1,19 +1,21 @@
+import { getRandom } from './getRandom';
+
 const eventTypes = ['mouseover', 'mousedown', 'pointerdown', 'pointerup', 'mouseup', 'click'] as const;
 type EventType = (typeof eventTypes)[number];
 
-const simulateMouseEvent = (element: HTMLElement, eventType: EventType) => {
+const simulateMouseEvent = (targetNode: HTMLElement, eventType: EventType) => {
   // https://stackoverflow.com/a/72372309
-  const box = element.getBoundingClientRect();
-  const coordX = box.left + (box.right - box.left) / 2;
-  const coordY = box.top + (box.bottom - box.top) / 2;
+  const box = targetNode.getBoundingClientRect();
+  const clientX = box.left + (box.right - box.left) / 2 + getRandom(-100, 100);
+  const clientY = box.top + (box.bottom - box.top) / 2 + getRandom(-100, 100);
 
-  element.dispatchEvent(
+  targetNode.dispatchEvent(
     new MouseEvent(eventType, {
       view: window,
       bubbles: true,
       cancelable: true,
-      clientX: coordX,
-      clientY: coordY,
+      clientX,
+      clientY,
       button: 0,
     }),
   );

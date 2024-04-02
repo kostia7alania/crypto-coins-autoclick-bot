@@ -13,9 +13,9 @@
 
 // @match       https://webapp.limecoin.online/*
 
-// @version      1.0.13
+// @version      1.0.14
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 02.04.2024, 10:41:48
+// @description  first release: 29.03.2024, 13:33:33, last release: 02.04.2024, 12:26:56
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -72,17 +72,17 @@ const getRandom = (min = 25, max = 400) => Math.floor(Math.random() * max) + min
 const getWait = (ms = getRandom(60, 123)) => new Promise((res) => setTimeout(res, ms));
 
 const eventTypes = ["mouseover", "mousedown", "pointerdown", "pointerup", "mouseup", "click"];
-const simulateMouseEvent = (element, eventType) => {
-  const box = element.getBoundingClientRect();
-  const coordX = box.left + (box.right - box.left) / 2;
-  const coordY = box.top + (box.bottom - box.top) / 2;
-  element.dispatchEvent(
+const simulateMouseEvent = (targetNode, eventType) => {
+  const box = targetNode.getBoundingClientRect();
+  const clientX = box.left + (box.right - box.left) / 2 + getRandom(-100, 100);
+  const clientY = box.top + (box.bottom - box.top) / 2 + getRandom(-100, 100);
+  targetNode.dispatchEvent(
     new MouseEvent(eventType, {
       view: window,
       bubbles: true,
       cancelable: true,
-      clientX: coordX,
-      clientY: coordY,
+      clientX,
+      clientY,
       button: 0
     })
   );
@@ -105,11 +105,14 @@ const simulateMouseClick = (targetNode) => {
 const touchEventTypes = ["touchstart", "touchmove", "touchend"];
 const simulateTouch = (targetNode) => {
   const triggerTouchEvent = (targetNode2, eventType) => {
+    const box = targetNode2.getBoundingClientRect();
+    const clientX = box.left + (box.right - box.left) / 2 + getRandom(-100, 100);
+    const clientY = box.top + (box.bottom - box.top) / 2 + getRandom(-100, 100);
     const touchObject = new Touch({
-      identifier: Date.now(),
+      identifier: Math.random(),
       target: targetNode2,
-      clientX: getRandom(22, 333),
-      clientY: getRandom(22, 333),
+      clientX,
+      clientY,
       radiusX: 2.5,
       radiusY: 2.5,
       rotationAngle: 10,
@@ -241,7 +244,7 @@ const limeCoin = () => {
 const selectors = {
   coinClick: '[class^="_tapContent"] img',
   counts: '[class^="_value_"] h4',
-  boosted: '[class^="_boostCoinBg"]',
+  boosted: '[class^="_tapContainer"]:not(.undefined)',
   // _boostCoinBg_
   tapBotOkText: "Get it!"
 };
