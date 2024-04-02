@@ -10,6 +10,9 @@ type Selectors = {
   tabBotOkText?: string;
 };
 
+let isInProgress = false;
+let count = 0;
+
 export const goTypicalBot = (selectors: Selectors) => {
   /**************
    * COMMON CODE
@@ -37,7 +40,6 @@ export const goTypicalBot = (selectors: Selectors) => {
 
   const getCounts = () => {
     const counts = document.querySelector(selectors.counts)?.textContent;
-    console.log(`counts: ${counts}`);
     if (!counts) return 0;
     return +counts;
   };
@@ -45,17 +47,20 @@ export const goTypicalBot = (selectors: Selectors) => {
   const getIsBoosted = () => {
     return selectors.boosted && document.querySelector(selectors.boosted);
   };
-  let isInProgress = false;
-  let count = 0;
 
   const start = async () => {
     if (isInProgress) return;
     clickTabBotOkButton();
 
-    while (getCounts()) {
+    let counts = 0;
+    while ((counts = getCounts())) {
       isInProgress = true;
-      if (clickCoin()) console.log(`click #${++count}`);
-      else console.log('fail click ');
+      if (clickCoin()) {
+        // @ts-ignore
+        if (!window.silent) console.log(`click #${++count} :: ${counts}`);
+      } else {
+        console.log('fail click ');
+      }
       await (getIsBoosted() ? getWait(getRandom(1, 7)) : getWait(getRandom(25, 400)));
       isInProgress = false;
     }

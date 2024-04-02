@@ -13,9 +13,9 @@
 
 // @match       https://webapp.limecoin.online/*
 
-// @version      1.0.12
+// @version      1.0.13
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 02.04.2024, 01:41:15
+// @description  first release: 29.03.2024, 13:33:33, last release: 02.04.2024, 10:41:48
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -130,6 +130,8 @@ const simulateTouch = (targetNode) => {
   });
 };
 
+let isInProgress = false;
+let count = 0;
 const goTypicalBot = (selectors) => {
   const clickCoin = () => {
     const coinButton = document.querySelector(selectors.coinClick);
@@ -151,7 +153,6 @@ const goTypicalBot = (selectors) => {
   };
   const getCounts = () => {
     const counts = document.querySelector(selectors.counts)?.textContent;
-    console.log(`counts: ${counts}`);
     if (!counts)
       return 0;
     return +counts;
@@ -159,18 +160,19 @@ const goTypicalBot = (selectors) => {
   const getIsBoosted = () => {
     return selectors.boosted && document.querySelector(selectors.boosted);
   };
-  let isInProgress = false;
-  let count = 0;
   const start = async () => {
     if (isInProgress)
       return;
     clickTabBotOkButton();
-    while (getCounts()) {
+    let counts = 0;
+    while (counts = getCounts()) {
       isInProgress = true;
-      if (clickCoin())
-        console.log(`click #${++count}`);
-      else
+      if (clickCoin()) {
+        if (!window.silent)
+          console.log(`click #${++count} :: ${counts}`);
+      } else {
         console.log("fail click ");
+      }
       await (getIsBoosted() ? getWait(getRandom(1, 7)) : getWait(getRandom(25, 400)));
       isInProgress = false;
     }
@@ -239,7 +241,8 @@ const limeCoin = () => {
 const selectors = {
   coinClick: '[class^="_tapContent"] img',
   counts: '[class^="_value_"] h4',
-  boosted: '[class^="_large"]',
+  boosted: '[class^="_boostCoinBg"]',
+  // _boostCoinBg_
   tapBotOkText: "Get it!"
 };
 const tapSwap = () => {
