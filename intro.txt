@@ -5,11 +5,14 @@
 // @match        https://clix.game/*
 // @match        https://doxcoin.net/game*
 // @match        https://app.tapswap.ai/*
+// @match        https://the-pixels-game.fireheadz.games/*
 
 // @match       https://web.telegram.org/k/#@OfficialLimeCoinBot
 // @match       https://web.telegram.org/k/#@DOXcoin_BOT
 // @match       https://web.telegram.org/k/#@notcoin_bot
 // @match       https://web.telegram.org/k/#@tapswap_bot
+// @match       https://web.telegram.org/k/#@the_pixels_bot
+
 
 // @match       https://webapp.limecoin.online/*
 

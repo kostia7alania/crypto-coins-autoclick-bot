@@ -5,17 +5,20 @@
 // @match        https://clix.game/*
 // @match        https://doxcoin.net/game*
 // @match        https://app.tapswap.ai/*
+// @match        https://the-pixels-game.fireheadz.games/*
 
 // @match       https://web.telegram.org/k/#@OfficialLimeCoinBot
 // @match       https://web.telegram.org/k/#@DOXcoin_BOT
 // @match       https://web.telegram.org/k/#@notcoin_bot
 // @match       https://web.telegram.org/k/#@tapswap_bot
+// @match       https://web.telegram.org/k/#@the_pixels_bot
+
 
 // @match       https://webapp.limecoin.online/*
 
-// @version      1.0.14
+// @version      1.0.15
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 02.04.2024, 12:26:56
+// @description  first release: 29.03.2024, 13:33:33, last release: 02.04.2024, 21:30:54
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -71,11 +74,19 @@ const getRandom = (min = 25, max = 400) => Math.floor(Math.random() * max) + min
 
 const getWait = (ms = getRandom(60, 123)) => new Promise((res) => setTimeout(res, ms));
 
-const eventTypes = ["mouseover", "mousedown", "pointerdown", "pointerup", "mouseup", "click"];
-const simulateMouseEvent = (targetNode, eventType) => {
+const getClientXY = (targetNode) => {
   const box = targetNode.getBoundingClientRect();
   const clientX = box.left + (box.right - box.left) / 2 + getRandom(-100, 100);
   const clientY = box.top + (box.bottom - box.top) / 2 + getRandom(-100, 100);
+  return {
+    clientX,
+    clientY
+  };
+};
+
+const eventTypes = ["mouseover", "mousedown", "pointerdown", "pointerup", "mouseup", "click"];
+const simulateMouseEvent = (targetNode, eventType) => {
+  const { clientX, clientY } = getClientXY(targetNode);
   targetNode.dispatchEvent(
     new MouseEvent(eventType, {
       view: window,
@@ -105,9 +116,7 @@ const simulateMouseClick = (targetNode) => {
 const touchEventTypes = ["touchstart", "touchmove", "touchend"];
 const simulateTouch = (targetNode) => {
   const triggerTouchEvent = (targetNode2, eventType) => {
-    const box = targetNode2.getBoundingClientRect();
-    const clientX = box.left + (box.right - box.left) / 2 + getRandom(-100, 100);
-    const clientY = box.top + (box.bottom - box.top) / 2 + getRandom(-100, 100);
+    const { clientX, clientY } = getClientXY(targetNode2);
     const touchObject = new Touch({
       identifier: Math.random(),
       target: targetNode2,
@@ -133,8 +142,8 @@ const simulateTouch = (targetNode) => {
   });
 };
 
-let isInProgress = false;
-let count = 0;
+let isInProgress$1 = false;
+let count$1 = 0;
 const goTypicalBot = (selectors) => {
   const clickCoin = () => {
     const coinButton = document.querySelector(selectors.coinClick);
@@ -164,20 +173,20 @@ const goTypicalBot = (selectors) => {
     return selectors.boosted && document.querySelector(selectors.boosted);
   };
   const start = async () => {
-    if (isInProgress)
+    if (isInProgress$1)
       return;
     clickTabBotOkButton();
     let counts = 0;
     while (counts = getCounts()) {
-      isInProgress = true;
+      isInProgress$1 = true;
       if (clickCoin()) {
         if (!window.silent)
-          console.log(`click #${++count} :: ${counts}`);
+          console.log(`click #${++count$1} :: ${counts}`);
       } else {
         console.log("fail click ");
       }
       await (getIsBoosted() ? getWait(getRandom(1, 7)) : getWait(getRandom(25, 400)));
-      isInProgress = false;
+      isInProgress$1 = false;
     }
   };
   setInterval(start, 3e3);
@@ -252,6 +261,44 @@ const tapSwap = () => {
   goTypicalBot(selectors);
 };
 
+let isInProgress = false;
+let count = 0;
+const thePixels = () => {
+  const anyClick = () => {
+    const found = [...document.querySelectorAll('[class^="BlackButtonStyled"]:not(:disabled)')].find((e) => {
+      return ["Push", "Grab", "Next Pixel"].find((text) => e.textContent?.includes(text));
+    });
+    if (!found)
+      return false;
+    simulateMouseClick(found);
+    simulateTouch(found);
+    return true;
+  };
+  const getCounts = () => {
+    const counts = document.querySelector("[class^=TargetProgressInfo]")?.textContent?.split("/").at(0);
+    if (!counts)
+      return 0;
+    return +counts;
+  };
+  const start = async () => {
+    if (isInProgress)
+      return;
+    let counts = 0;
+    while (counts = getCounts()) {
+      isInProgress = true;
+      if (anyClick()) {
+        if (!window.silent)
+          console.log(`click #${++count} :: ${counts}`);
+      } else {
+        console.log("fail click ");
+      }
+      await getWait(getRandom(333, 1e3));
+      isInProgress = false;
+    }
+  };
+  setInterval(start, 3e3);
+};
+
 const buttonTexts = [
   "Начать игру",
   // @OfficialLimeCoinBot
@@ -304,7 +351,8 @@ const hostMap = {
   "doxcoin.net": doxCoin,
   "clicker.joincommunity.xyz": notCoin,
   "clix.game": clixGame,
-  "app.tapswap.ai": tapSwap
+  "app.tapswap.ai": tapSwap,
+  "the-pixels-game.fireheadz.games": thePixels
 };
 const __main_def__ = async () => {
   const callback = hostMap[location.host];
