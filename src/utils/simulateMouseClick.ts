@@ -1,13 +1,11 @@
-import { getRandom } from './getRandom';
+import { getClientXY } from './getClientXY';
 
 const eventTypes = ['mouseover', 'mousedown', 'pointerdown', 'pointerup', 'mouseup', 'click'] as const;
 type EventType = (typeof eventTypes)[number];
 
 const simulateMouseEvent = (targetNode: HTMLElement, eventType: EventType) => {
   // https://stackoverflow.com/a/72372309
-  const box = targetNode.getBoundingClientRect();
-  const clientX = box.left + (box.right - box.left) / 2 + getRandom(-100, 100);
-  const clientY = box.top + (box.bottom - box.top) / 2 + getRandom(-100, 100);
+  const { clientX, clientY } = getClientXY(targetNode);
 
   targetNode.dispatchEvent(
     new MouseEvent(eventType, {

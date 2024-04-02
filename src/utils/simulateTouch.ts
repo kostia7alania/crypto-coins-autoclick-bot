@@ -1,13 +1,11 @@
-import { getRandom } from './getRandom';
+import { getClientXY } from './getClientXY';
 
 const touchEventTypes = ['touchstart', 'touchmove', 'touchend'] as const;
 type TouchEventType = (typeof touchEventTypes)[number];
 
 export const simulateTouch = (targetNode: HTMLElement) => {
   const triggerTouchEvent = (targetNode: HTMLElement, eventType: TouchEventType) => {
-    const box = targetNode.getBoundingClientRect();
-    const clientX = box.left + (box.right - box.left) / 2 + getRandom(-100, 100);
-    const clientY = box.top + (box.bottom - box.top) / 2 + getRandom(-100, 100);
+    const { clientX, clientY } = getClientXY(targetNode);
 
     const touchObject = new Touch({
       identifier: Math.random(),
