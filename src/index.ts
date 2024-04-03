@@ -9,6 +9,7 @@ const hostMap: Record<string, () => any> = {
   'clix.game': clixGame,
   'app.tapswap.ai': tapSwap,
   'the-pixels-game.fireheadz.games': thePixels,
+  'the-pixels.pages.dev': thePixels,
 };
 
 const __main_def__ = async () => {

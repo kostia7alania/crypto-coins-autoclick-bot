@@ -6,6 +6,7 @@
 // @match        https://doxcoin.net/game*
 // @match        https://app.tapswap.ai/*
 // @match        https://the-pixels-game.fireheadz.games/*
+// @match        https://the-pixels.pages.dev/*
 
 // @match       https://web.telegram.org/k/#@OfficialLimeCoinBot
 // @match       https://web.telegram.org/k/#@DOXcoin_BOT
