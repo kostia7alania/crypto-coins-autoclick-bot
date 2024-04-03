@@ -1,8 +1,7 @@
-import { getWait } from '@/utils/getWait';
-import { simulateMouseClick } from '@/utils/simulateMouseClick';
-import { simulateTouch } from '@/utils/simulateTouch';
-
 import { getRandom } from '../utils/getRandom';
+import { getWait } from '../utils/getWait';
+import { simulateMouseClick } from '../utils/simulateMouseClick';
+import { simulateTouch } from '../utils/simulateTouch';
 
 let isInProgress = false;
 let count = 0;

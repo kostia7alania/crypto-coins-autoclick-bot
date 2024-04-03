@@ -1,20 +1,7 @@
-import { arbuzApp, clixGame, doxCoin, limeCoin, notCoin, tapSwap, thePixels } from './coins';
-import { goToAppFromTelegram } from './telegram';
-
-const hostMap: Record<string, () => any> = {
-  'web.telegram.org': goToAppFromTelegram,
-  'webapp.limecoin.online': limeCoin,
-  'doxcoin.net': doxCoin,
-  'clicker.joincommunity.xyz': notCoin,
-  'clix.game': clixGame,
-  'app.tapswap.ai': tapSwap,
-  'the-pixels-game.fireheadz.games': thePixels,
-  'the-pixels.pages.dev': thePixels,
-  'arbuzapp.betty.games': arbuzApp,
-};
+import { appsHostMap } from '@/hostMap';
 
 const __main_def__ = async () => {
-  const callback = hostMap[location.host];
+  const [callback] = appsHostMap[location.host];
 
   if (typeof callback === 'function') return callback();
   console.log('nothing found');

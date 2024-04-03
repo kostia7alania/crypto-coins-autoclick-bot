@@ -1,26 +1,36 @@
 // ==UserScript==
 // @name         Crypto Coins Auto-Click Bot
 // @namespace    Violentmonkey Scripts
-// @match        https://clicker.joincommunity.xyz/clicker*
-// @match        https://clix.game/*
-// @match        https://doxcoin.net/game*
-// @match        https://app.tapswap.ai/*
-// @match        https://the-pixels-game.fireheadz.games/*
+
+
 // @match        https://webapp.limecoin.online/*
+// @match        https://web.telegram.org/k/#@OfficialLimeCoinBot
+
+// @match        https://doxcoin.net/*
+// @match        https://web.telegram.org/k/#@DOXcoin_BOT
+
+// @match        https://clicker.joincommunity.xyz/*
+// @match        https://web.telegram.org/k/#@notcoin_bot
+
+// @match        https://clix.game/*
+// @match        https://clix.game/
+
+// @match        https://app.tapswap.ai/*
+// @match        https://web.telegram.org/k/#@tapswap_bot
+
+// @match        https://the-pixels-game.fireheadz.games/*
+// @match        https://web.telegram.org/k/#@the_pixels_bot
+
 // @match        https://the-pixels.pages.dev/*
+// @match        https://web.telegram.org/k/#@the_pixels_bot
+
 // @match        https://arbuzapp.betty.games/*
-
-// @match       https://web.telegram.org/k/#@OfficialLimeCoinBot
-// @match       https://web.telegram.org/k/#@DOXcoin_BOT
-// @match       https://web.telegram.org/k/#@notcoin_bot
-// @match       https://web.telegram.org/k/#@tapswap_bot
-// @match       https://web.telegram.org/k/#@the_pixels_bot
-// @match       https://web.telegram.org/k/#@wmclick_bot_arbuz
+// @match        https://web.telegram.org/k/#@wmclick_bot_arbuz
 
 
-// @version      1.1.0
+// @version      1.1.2
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 03.04.2024, 22:57:44
+// @description  first release: 29.03.2024, 13:33:33, last release: 04.04.2024, 00:02:22
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -355,19 +365,20 @@ const goToAppFromTelegram = () => {
   start();
 };
 
-const hostMap = {
-  "web.telegram.org": goToAppFromTelegram,
-  "webapp.limecoin.online": limeCoin,
-  "doxcoin.net": doxCoin,
-  "clicker.joincommunity.xyz": notCoin,
-  "clix.game": clixGame,
-  "app.tapswap.ai": tapSwap,
-  "the-pixels-game.fireheadz.games": thePixels,
-  "the-pixels.pages.dev": thePixels,
-  "arbuzapp.betty.games": arbuzApp
+const appsHostMap = {
+  "web.telegram.org": [goToAppFromTelegram, ""],
+  "webapp.limecoin.online": [limeCoin, "https://web.telegram.org/k/#@OfficialLimeCoinBot"],
+  "doxcoin.net": [doxCoin, "https://web.telegram.org/k/#@DOXcoin_BOT"],
+  "clicker.joincommunity.xyz": [notCoin, "https://web.telegram.org/k/#@notcoin_bot"],
+  "clix.game": [clixGame, "https://clix.game/"],
+  "app.tapswap.ai": [tapSwap, "https://web.telegram.org/k/#@tapswap_bot"],
+  "the-pixels-game.fireheadz.games": [thePixels, "https://web.telegram.org/k/#@the_pixels_bot"],
+  "the-pixels.pages.dev": [thePixels, "https://web.telegram.org/k/#@the_pixels_bot"],
+  "arbuzapp.betty.games": [arbuzApp, "https://web.telegram.org/k/#@wmclick_bot_arbuz"]
 };
+
 const __main_def__ = async () => {
-  const callback = hostMap[location.host];
+  const [callback] = appsHostMap[location.host];
   if (typeof callback === "function")
     return callback();
   console.log("nothing found");

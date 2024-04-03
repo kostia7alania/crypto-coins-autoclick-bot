@@ -12,11 +12,14 @@
 
 ## Список лудилок (актуально на 29.3.24, обновляется)
 
-1. [limeСoin](https://t.me/OfficialLimeCoinBot?start=120855841)
-2. [doxCoin](https://t.me/DOXcoin_BOT?start=rl_120855841)
-3. [notCoin](https://t.me/notcoin_bot?start=r_576167_2961097)
-4. [clixGame](https://clix.game/?ref=6406)
-5. [tapSwap](https://t.me/tapswap_bot?start=r_120855841)
+1. [NotCoin](https://t.me/notcoin_bot?start=r_576167_2961097)
+2. [TapSwap](https://t.me/tapswap_bot?start=r_120855841)
+3. [LimeCoin](https://t.me/OfficialLimeCoinBot?start=120855841)
+4. [DotCoin](https://t.me/dotcoin_bot?start=r_120855841)
+5. [DoxCoin](https://t.me/DOXcoin_BOT?start=rl_120855841)
+6. [ClixGame](https://clix.game/?ref=6406)
+7. [ThePixelsBot](https://t.me/the_pixels_bot/play?startapp=0_a5afc8ac-f1d8-4b10-a255-570d0eb26274_2_fallback-invite)
+8. [ArbuzApp](t.me/wmclick_bot/click?startapp=ref_uZAOLgal)
 
 ## Feedback
 
@@ -25,12 +28,18 @@
 
 # Добавить в закладки + в стартовые в Anty Browser:
 
-limeСoin::https://t.me/OfficialLimeCoinBot?start=120855841
+NotCoin::https://t.me/notcoin_bot?start=r_576167_2961097
 
-doxCoin::https://t.me/DOXcoin_BOT?start=rl_120855841
+LimeСoin::https://t.me/OfficialLimeCoinBot?start=120855841
 
-notCoin::https://t.me/notcoin_bot?start=r_576167_2961097
+TapSwap::https://t.me/tapswap_bot?start=r_120855841
 
-clixGame::https://clix.game/?ref=6406
+DotCoin::https://t.me/dotcoin_bot?start=r_120855841
 
-tapSwap::https://t.me/tapswap_bot?start=r_120855841
+DoxCoin::https://t.me/DOXcoin_BOT?start=rl_120855841
+
+ClixGame::https://clix.game/?ref=6406
+
+ThePixelsBot::https://t.me/the_pixels_bot/play?startapp=0_a5afc8ac-f1d8-4b10-a255-570d0eb26274_2_fallback-invite
+
+ArbuzApp::https://t.me/wmclick_bot/click?startapp=ref_uZAOLgal
