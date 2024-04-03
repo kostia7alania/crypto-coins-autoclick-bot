@@ -6,16 +6,17 @@
 // @match        https://doxcoin.net/game*
 // @match        https://app.tapswap.ai/*
 // @match        https://the-pixels-game.fireheadz.games/*
+// @match        https://webapp.limecoin.online/*
 // @match        https://the-pixels.pages.dev/*
+// @match        https://arbuzapp.betty.games/*
 
 // @match       https://web.telegram.org/k/#@OfficialLimeCoinBot
 // @match       https://web.telegram.org/k/#@DOXcoin_BOT
 // @match       https://web.telegram.org/k/#@notcoin_bot
 // @match       https://web.telegram.org/k/#@tapswap_bot
 // @match       https://web.telegram.org/k/#@the_pixels_bot
+// @match       https://web.telegram.org/k/#@wmclick_bot_arbuz
 
-
-// @match       https://webapp.limecoin.online/*
 
 // @version      __VERSION_FROM_PACKAGE_JSON__
 // @author       t.me/dvachers_space

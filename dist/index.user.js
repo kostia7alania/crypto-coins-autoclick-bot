@@ -6,20 +6,21 @@
 // @match        https://doxcoin.net/game*
 // @match        https://app.tapswap.ai/*
 // @match        https://the-pixels-game.fireheadz.games/*
+// @match        https://webapp.limecoin.online/*
 // @match        https://the-pixels.pages.dev/*
+// @match        https://arbuzapp.betty.games/*
 
 // @match       https://web.telegram.org/k/#@OfficialLimeCoinBot
 // @match       https://web.telegram.org/k/#@DOXcoin_BOT
 // @match       https://web.telegram.org/k/#@notcoin_bot
 // @match       https://web.telegram.org/k/#@tapswap_bot
 // @match       https://web.telegram.org/k/#@the_pixels_bot
+// @match       https://web.telegram.org/k/#@wmclick_bot_arbuz
 
 
-// @match       https://webapp.limecoin.online/*
-
-// @version      1.0.18
+// @version      1.1.0
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 03.04.2024, 20:45:51
+// @description  first release: 29.03.2024, 13:33:33, last release: 03.04.2024, 22:57:44
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -193,29 +194,29 @@ const goTypicalBot = (selectors) => {
   setInterval(start, 3e3);
 };
 
-const selectors$3 = {
+const selectors$4 = {
   coinClick: 'button [src="/clicker/mainButton/base/button.png"]',
   counts: ".text-xl.text-white.font-medium"
 };
 const clixGame = () => {
-  goTypicalBot(selectors$3);
+  goTypicalBot(selectors$4);
 };
 
-const selectors$2 = {
+const selectors$3 = {
   coinClick: ".coin-btn",
   counts: "span.text-3xl.font-bold"
 };
 const doxCoin = () => {
-  goTypicalBot(selectors$2);
+  goTypicalBot(selectors$3);
 };
 
-const selectors$1 = {
+const selectors$2 = {
   coinClick: ".click-coin img",
   counts: ".click-limit__left",
   boosted: ".l-home.boost"
 };
 const limeCoin = () => {
-  goTypicalBot(selectors$1);
+  goTypicalBot(selectors$2);
   const url = "https://api.limecoin.online/points/receive/";
   const getParameters = (isBoost) => {
     const clicks = getRandom(1, 100);
@@ -251,7 +252,7 @@ const limeCoin = () => {
   console.log("limeCoin: если хочешь прямые апи-запросы - запускай в консоле: go() - без буста, go(true) - с бустом");
 };
 
-const selectors = {
+const selectors$1 = {
   coinClick: '[class^="_tapContent"] img',
   counts: '[class^="_value_"] h4',
   boosted: '[class^="_tapContainer"]:not(.undefined)',
@@ -259,7 +260,7 @@ const selectors = {
   tapBotOkText: "Get it!"
 };
 const tapSwap = () => {
-  goTypicalBot(selectors);
+  goTypicalBot(selectors$1);
 };
 
 let isInProgress = false;
@@ -298,6 +299,14 @@ const thePixels = () => {
     }
   };
   setInterval(start, 3e3);
+};
+
+const selectors = {
+  coinClick: ".game__field",
+  counts: ".energy__value.current-value"
+};
+const arbuzApp = () => {
+  goTypicalBot(selectors);
 };
 
 const buttonTexts = [
@@ -354,7 +363,8 @@ const hostMap = {
   "clix.game": clixGame,
   "app.tapswap.ai": tapSwap,
   "the-pixels-game.fireheadz.games": thePixels,
-  "the-pixels.pages.dev": thePixels
+  "the-pixels.pages.dev": thePixels,
+  "arbuzapp.betty.games": arbuzApp
 };
 const __main_def__ = async () => {
   const callback = hostMap[location.host];

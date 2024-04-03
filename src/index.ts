@@ -1,4 +1,4 @@
-import { clixGame, doxCoin, limeCoin, notCoin, tapSwap, thePixels } from './coins';
+import { arbuzApp, clixGame, doxCoin, limeCoin, notCoin, tapSwap, thePixels } from './coins';
 import { goToAppFromTelegram } from './telegram';
 
 const hostMap: Record<string, () => any> = {
@@ -10,6 +10,7 @@ const hostMap: Record<string, () => any> = {
   'app.tapswap.ai': tapSwap,
   'the-pixels-game.fireheadz.games': thePixels,
   'the-pixels.pages.dev': thePixels,
+  'arbuzapp.betty.games': arbuzApp,
 };
 
 const __main_def__ = async () => {
