@@ -41,7 +41,7 @@ export const goTypicalBot = (selectors: Selectors) => {
   const getCounts = () => {
     const counts = document.querySelector(selectors.counts)?.textContent;
     if (!counts) return 0;
-    return +counts;
+    return Number.parseInt(counts);
   };
 
   const getIsBoosted = () => {
