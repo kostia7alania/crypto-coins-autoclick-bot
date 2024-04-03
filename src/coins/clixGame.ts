@@ -1,7 +1,7 @@
 import { goTypicalBot } from '../utils/typicalBot';
 
 const selectors = {
-  coinClick: 'button [src="/clicker/mainButton/basic/button.png"]',
+  coinClick: 'button [src="/clicker/mainButton/base/button.png"]',
   counts: '.text-xl.text-white.font-medium',
 };
 

@@ -17,9 +17,9 @@
 
 // @match       https://webapp.limecoin.online/*
 
-// @version      1.0.17
+// @version      1.0.18
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 03.04.2024, 10:22:43
+// @description  first release: 29.03.2024, 13:33:33, last release: 03.04.2024, 20:45:51
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -194,7 +194,7 @@ const goTypicalBot = (selectors) => {
 };
 
 const selectors$3 = {
-  coinClick: 'button [src="/clicker/mainButton/basic/button.png"]',
+  coinClick: 'button [src="/clicker/mainButton/base/button.png"]',
   counts: ".text-xl.text-white.font-medium"
 };
 const clixGame = () => {
