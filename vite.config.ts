@@ -1,7 +1,7 @@
 /// <reference types="vitest" />
-
 import fs from 'fs';
 import { fileURLToPath, URL } from 'node:url';
+import { capitalCase } from 'change-case';
 import { defineConfig, type UserConfig } from 'vite';
 
 import intro from './intro.txt?raw';
@@ -17,6 +17,8 @@ const pathResolve = (path: string) => fileURLToPath(new URL(path, import.meta.ur
 export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
   console.log('[vite.config]', { command, mode });
 
+  const isWatch = mode === 'watch';
+
   return {
     build: {
       minify: false,
@@ -26,7 +28,7 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
       target: 'esnext', // Reduce bloat from legacy polyfills.
 
       lib: {
-        name: 'mithril',
+        name: 'crypto-auto-click-bot',
         formats: ['es'],
         // fileName: (format) => `mithril.${format}.mjs`,
         entry: {
@@ -37,14 +39,14 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
         // external: [...Object.keys(pkg.peerDependencies)],
         treeshake: true,
         output: {
-          exports: 'named',
+          // exports: 'named',
           // intro: `${intro};`,
           globals: {
             // vue: "Vue"
           },
           // chunkFileNames: 'chunk/[name]/[hash].js',
           // assetFileNames: 'asset/[name]/[hash][extname]',
-          entryFileNames: 'index.user.js',
+          entryFileNames: `${isWatch ? 'dev' : '[name]'}.user.js`,
         },
       },
     },
@@ -71,11 +73,17 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
           const [[key]] = Object.entries(bundle);
 
           const filePath = pathResolve(`./dist/${key}`);
+
           const data = fs.readFileSync(filePath, { encoding: 'utf8' });
           const introReplaced = intro
-            .replace('__VERSION_FROM_PACKAGE_JSON__', pkg.version)
+            .replace('__VERSION_FROM_PACKAGE_JSON__', isWatch ? Math.random() : pkg.version)
             .replace('__APP_URL_MATCHES__', getMatchesFromMap)
+            .replace('__APP_NAME__', `${capitalCase(pkg.name)} ${isWatch ? '[dev]' : ''}`)
+            .replace('__HOMEPAGE__', pkg.homepage)
+            .replace(/__UPDATE_URL__/g, isWatch ? `file://${filePath}` : pkg.updateURL)
+
             .replace('__LAST_RELEASE__', new Date().toLocaleString('ru'));
+
           fs.writeFileSync(filePath, `${introReplaced}\n${data}`);
         },
       },

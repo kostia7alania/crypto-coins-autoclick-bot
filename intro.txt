@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Crypto Coins Auto-Click Bot
+// @name         __APP_NAME__
 // @namespace    Violentmonkey Scripts
 
 __APP_URL_MATCHES__
@@ -7,8 +7,8 @@ __APP_URL_MATCHES__
 // @version      __VERSION_FROM_PACKAGE_JSON__
 // @author       t.me/dvachers_space
 // @description  first release: 29.03.2024, 13:33:33, last release: __LAST_RELEASE__
-// @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
-// @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
-// @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
+// @downloadURL  __UPDATE_URL__
+// @updateURL    __UPDATE_URL__
+// @homepage     __HOMEPAGE__
 // @icon         https://cdn.joincommunity.xyz/clicker/moneta-small.png
 // ==/UserScript==

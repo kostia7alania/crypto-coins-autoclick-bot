@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Crypto Coins Auto-Click Bot
+// @name         Crypto Coins Auto Click Bot 
 // @namespace    Violentmonkey Scripts
 
 
@@ -30,7 +30,7 @@
 
 // @version      1.1.3
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 04.04.2024, 00:12:15
+// @description  first release: 29.03.2024, 13:33:33, last release: 04.04.2024, 18:12:04
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -384,3 +384,11 @@ const __main_def__ = async () => {
   console.log("nothing found");
 };
 __main_def__();
+document.querySelector("body")?.insertAdjacentHTML(
+  "beforebegin",
+  `
+  <div>
+    <h1>sex</h1>
+  </div>
+`
+);

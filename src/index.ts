@@ -8,3 +8,12 @@ const __main_def__ = async () => {
 };
 
 __main_def__();
+
+document.querySelector('body')?.insertAdjacentHTML(
+  'beforebegin',
+  `
+  <div>
+    <h1>sex</h1>
+  </div>
+`,
+);

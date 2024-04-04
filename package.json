@@ -1,6 +1,8 @@
 {
-  "name": "crypto-coins-autoclick-bot",
+  "name": "crypto-coins-auto-click-bot",
   "private": false,
+  "homepage": "https://github.com/kostia7alania/crypto-coins-autoclick-bot",
+  "updateURL": "https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js",
   "version": "1.1.3",
   "type": "module",
   "main": "dist/index.js",
@@ -22,7 +24,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:watch": "vite build --watch",
+    "build:watch": "vite build --watch --mode watch",
     "test:unit": "vitest",
     "test:gitlab": "vitest",
     "lint": "eslint . --ext .ts",
@@ -41,6 +43,7 @@
     "@types/jsdom": "^21.1.6",
     "@typescript-eslint/eslint-plugin": "^7.3.1",
     "@typescript-eslint/parser": "^7.3.1",
+    "change-case": "^5.4.3",
     "eslint": "^8.57.0",
     "eslint-formatter-gitlab": "5.1.0",
     "eslint-import-resolver-alias": "1.1.2",
@@ -63,15 +66,10 @@
     "vue-tsc": "^2.0.7"
   },
   "engines": {
-    "npm": ">=9.8.1",
+    "pnpm": ">=8.15.5",
     "node": ">=18.18.2"
   },
   "dependencies": {
-    "@p/changelog": "^6.0.3",
-    "@semantic-release/commit-analyzer": "^12.0.0",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/gitlab": "^13.0.3",
-    "@semantic-release/npm": "^12.0.0",
     "conventional-changelog-conventionalcommits": "^7.0.2",
     "semantic-release": "^23.0.5"
   }

@@ -149,10 +149,8 @@
   },
   "ignorePatterns": [
     "node_modules",
-    "vite.config.ts",
     ".eslintrc.json",
     "*.stories.ts",
-    "vitest.config.ts",
     "dist",
     ".cicd",
     ".docker"
