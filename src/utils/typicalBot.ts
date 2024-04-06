@@ -13,7 +13,15 @@ type Selectors = {
 let isInProgress = false;
 let count = 0;
 
+declare global {
+  interface Window {
+    maxWait: number;
+  }
+}
+
 export const goTypicalBot = (selectors: Selectors) => {
+  window.maxWait = 400;
+
   /**************
    * COMMON CODE
    **************/
@@ -61,7 +69,7 @@ export const goTypicalBot = (selectors: Selectors) => {
       } else {
         console.log('fail click ');
       }
-      await (getIsBoosted() ? getWait(getRandom(1, 7)) : getWait(getRandom(25, 400)));
+      await (getIsBoosted() ? getWait(getRandom(1, 7)) : getWait(getRandom(25, window.maxWait)));
       isInProgress = false;
     }
   };

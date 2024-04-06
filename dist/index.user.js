@@ -28,14 +28,16 @@
 // @match        https://web.telegram.org/k/#@wmclick_bot_arbuz
 
 
-// @version      1.1.3
+// @version      1.1.4
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 04.04.2024, 18:12:04
+// @description  first release: 29.03.2024, 13:33:33, last release: 07.04.2024, 00:41:20
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
 // @icon         https://cdn.joincommunity.xyz/clicker/moneta-small.png
 // ==/UserScript==
+
+const os = {};
 
 const notCoin = () => {
   const minimumEnergyForClick = 900;
@@ -157,6 +159,7 @@ const simulateTouch = (targetNode) => {
 let isInProgress$1 = false;
 let count$1 = 0;
 const goTypicalBot = (selectors) => {
+  window.maxWait = 400;
   const clickCoin = () => {
     const coinButton = document.querySelector(selectors.coinClick);
     if (coinButton) {
@@ -197,7 +200,7 @@ const goTypicalBot = (selectors) => {
       } else {
         console.log("fail click ");
       }
-      await (getIsBoosted() ? getWait(getRandom(1, 7)) : getWait(getRandom(25, 400)));
+      await (getIsBoosted() ? getWait(getRandom(1, 7)) : getWait(getRandom(25, window.maxWait)));
       isInProgress$1 = false;
     }
   };
@@ -377,18 +380,19 @@ const appsHostMap = {
   "arbuzapp.betty.games": [arbuzApp, "https://web.telegram.org/k/#@wmclick_bot_arbuz"]
 };
 
+const urls = Object.entries(appsHostMap);
+const getMatchesFromMap = () => {
+  return urls.filter(([_, [, tg]]) => tg).reduce((acc, [url, [, tg]]) => {
+    return acc + `${os.EOL}// @match        https://${url}/*${os.EOL}// @match        ${tg}${os.EOL}`;
+  }, "");
+};
+
 const __main_def__ = async () => {
   const [callback] = appsHostMap[location.host];
-  if (typeof callback === "function")
-    return callback();
+  if (typeof callback === "function") {
+    callback();
+    return;
+  }
   console.log("nothing found");
 };
 __main_def__();
-document.querySelector("body")?.insertAdjacentHTML(
-  "beforebegin",
-  `
-  <div>
-    <h1>sex</h1>
-  </div>
-`
-);
