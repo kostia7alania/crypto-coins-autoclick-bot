@@ -29,8 +29,10 @@ declare global {
   }
 }
 
-const clickByText = (selector: string, text: string) => {
-  const find = [...document.querySelectorAll(selector)].find((el) => el.textContent?.includes(text));
+const clickByText = (selector: string, text: string, isExact = false) => {
+  const find = [...document.querySelectorAll(selector)].find((el) =>
+    isExact ? el.textContent === text : el.textContent?.includes(text),
+  );
   if (!find || (find as HTMLElement).hasAttribute('disabled')) return false;
 
   simulateMouseClick(find as HTMLElement);
@@ -96,18 +98,19 @@ export const goTypicalBot = (selectors: Selectors) => {
       isBoostInProgress = true;
 
       clickByText(boosterItem?.section.selector, boosterItem.section.text);
+
       await getWait(3_000);
 
       if (!clickByText(boosterItem.item.selector, boosterItem.item.text)) {
         temporaryBlockedBoostSections[section] = true;
         setTimeout(() => (temporaryBlockedBoostSections[section] = false), 100_000);
-        clickByText(boosterItem.fallback.selector, boosterItem.fallback.text);
       }
       await getWait(3_000);
       clickByText(boosterItem.confirm.selector, boosterItem.confirm.text);
       await getWait(3_000);
     } finally {
       isBoostInProgress = false;
+      await clickByText(boosterItem.fallback.selector, boosterItem.fallback.text, true);
     }
   };
 
@@ -121,7 +124,7 @@ export const goTypicalBot = (selectors: Selectors) => {
 
     let counts = 0;
 
-    while ((counts = getCounts())) {
+    while ((counts = getCounts()) > 10) {
       isInProgress = true;
       if (clickCoin()) {
         // @ts-ignore

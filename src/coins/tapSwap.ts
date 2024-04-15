@@ -1,5 +1,3 @@
-import { getWait } from '@/utils/getWait';
-
 import { goTypicalBot } from '../utils/typicalBot';
 
 const selectors = {

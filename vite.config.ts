@@ -84,7 +84,7 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
 
           const data = fs.readFileSync(filePath, { encoding: 'utf8' });
           const introReplaced = intro
-            .replace('__VERSION_FROM_PACKAGE_JSON__', isWatch ? Math.random() : pkg.version)
+            .replace('__VERSION_FROM_PACKAGE_JSON__', `${pkg.version}${isWatch ? Math.random() : ''}`)
             .replace('__APP_URL_MATCHES__', getMatchesFromMap)
             .replace('__APP_NAME__', `${capitalCase(pkg.name)} ${isWatch ? '[dev]' : ''}`)
             .replace('__HOMEPAGE__', pkg.homepage)

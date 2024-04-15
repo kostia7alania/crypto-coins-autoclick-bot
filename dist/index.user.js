@@ -28,9 +28,9 @@
 // @match        https://web.telegram.org/k/#@wmclick_bot_arbuz
 
 
-// @version      1.1.5
+// @version      1.1.6
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 15.04.2024, 12:21:27
+// @description  first release: 29.03.2024, 13:33:33, last release: 15.04.2024, 12:59:34
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -158,8 +158,10 @@ const simulateTouch = (targetNode) => {
 
 let isInProgress$1 = false;
 let count$1 = 0;
-const clickByText = (selector, text) => {
-  const find = [...document.querySelectorAll(selector)].find((el) => el.textContent?.includes(text));
+const clickByText = (selector, text, isExact = false) => {
+  const find = [...document.querySelectorAll(selector)].find(
+    (el) => isExact ? el.textContent === text : el.textContent?.includes(text)
+  );
   if (!find || find.hasAttribute("disabled"))
     return false;
   simulateMouseClick(find);
@@ -212,13 +214,13 @@ const goTypicalBot = (selectors) => {
       if (!clickByText(boosterItem.item.selector, boosterItem.item.text)) {
         temporaryBlockedBoostSections[section] = true;
         setTimeout(() => temporaryBlockedBoostSections[section] = false, 1e5);
-        clickByText(boosterItem.fallback.selector, boosterItem.fallback.text);
       }
       await getWait(3e3);
       clickByText(boosterItem.confirm.selector, boosterItem.confirm.text);
       await getWait(3e3);
     } finally {
       isBoostInProgress = false;
+      await clickByText(boosterItem.fallback.selector, boosterItem.fallback.text, true);
     }
   };
   const start = async () => {
@@ -226,7 +228,7 @@ const goTypicalBot = (selectors) => {
       return;
     clickTabBotOkButton();
     let counts = 0;
-    while (counts = getCounts()) {
+    while ((counts = getCounts()) > 10) {
       isInProgress$1 = true;
       if (clickCoin()) {
         if (!window.silent)
