@@ -28,9 +28,9 @@
 // @match        https://web.telegram.org/k/#@wmclick_bot_arbuz
 
 
-// @version      1.1.4
+// @version      1.1.5
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 07.04.2024, 00:41:20
+// @description  first release: 29.03.2024, 13:33:33, last release: 15.04.2024, 12:21:27
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -158,6 +158,14 @@ const simulateTouch = (targetNode) => {
 
 let isInProgress$1 = false;
 let count$1 = 0;
+const clickByText = (selector, text) => {
+  const find = [...document.querySelectorAll(selector)].find((el) => el.textContent?.includes(text));
+  if (!find || find.hasAttribute("disabled"))
+    return false;
+  simulateMouseClick(find);
+  simulateTouch(find);
+  return true;
+};
 const goTypicalBot = (selectors) => {
   window.maxWait = 400;
   const clickCoin = () => {
@@ -169,10 +177,10 @@ const goTypicalBot = (selectors) => {
     }
   };
   const clickTabBotOkButton = () => {
-    if (!selectors.tabBotOkText)
+    if (!selectors.okText)
       return;
     [...document.querySelectorAll("button")].forEach((e) => {
-      if (e.textContent === selectors.tabBotOkText) {
+      if (e.textContent === selectors.okText) {
         simulateMouseClick(e);
         simulateTouch(e);
       }
@@ -186,6 +194,32 @@ const goTypicalBot = (selectors) => {
   };
   const getIsBoosted = () => {
     return selectors.boosted && document.querySelector(selectors.boosted);
+  };
+  let isBoostInProgress = false;
+  const temporaryBlockedBoostSections = {
+    //
+  };
+  const applyBoost = async (section) => {
+    if (isBoostInProgress || temporaryBlockedBoostSections[section])
+      return;
+    const boosterItem = selectors?.boosters?.[section];
+    if (!boosterItem)
+      return;
+    try {
+      isBoostInProgress = true;
+      clickByText(boosterItem?.section.selector, boosterItem.section.text);
+      await getWait(3e3);
+      if (!clickByText(boosterItem.item.selector, boosterItem.item.text)) {
+        temporaryBlockedBoostSections[section] = true;
+        setTimeout(() => temporaryBlockedBoostSections[section] = false, 1e5);
+        clickByText(boosterItem.fallback.selector, boosterItem.fallback.text);
+      }
+      await getWait(3e3);
+      clickByText(boosterItem.confirm.selector, boosterItem.confirm.text);
+      await getWait(3e3);
+    } finally {
+      isBoostInProgress = false;
+    }
   };
   const start = async () => {
     if (isInProgress$1)
@@ -203,6 +237,7 @@ const goTypicalBot = (selectors) => {
       await (getIsBoosted() ? getWait(getRandom(1, 7)) : getWait(getRandom(25, window.maxWait)));
       isInProgress$1 = false;
     }
+    Object.keys(selectors?.boosters).forEach(applyBoost);
   };
   setInterval(start, 3e3);
 };
@@ -270,7 +305,21 @@ const selectors$1 = {
   counts: '[class^="_value_"] h4',
   boosted: '[class^="_tapContainer"]:not(.undefined)',
   // _boostCoinBg_
-  tapBotOkText: "Get it!"
+  okText: "Get it!",
+  boosters: {
+    guru: {
+      section: { selector: "button", text: "Boost" },
+      item: { selector: "button", text: "Taping Guru" },
+      confirm: { selector: "button", text: "Get it!" },
+      fallback: { selector: "button", text: "Tap" }
+    },
+    full: {
+      section: { selector: "button", text: "Boost" },
+      item: { selector: "button", text: "Full Tank" },
+      confirm: { selector: "button", text: "Get it!" },
+      fallback: { selector: "button", text: "Tap" }
+    }
+  }
 };
 const tapSwap = () => {
   goTypicalBot(selectors$1);
