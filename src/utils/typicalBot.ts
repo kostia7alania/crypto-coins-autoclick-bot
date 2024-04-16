@@ -136,7 +136,9 @@ export const goTypicalBot = (selectors: Selectors) => {
       isInProgress = false;
     }
 
-    Object.keys(selectors?.boosters).forEach(applyBoost);
+    if (selectors?.boosters) {
+      Object.keys(selectors?.boosters).forEach(applyBoost);
+    }
   };
 
   setInterval(start, 3000);
