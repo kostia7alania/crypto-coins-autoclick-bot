@@ -8,7 +8,7 @@ type Selectors = {
   counts: string;
   boosted?: string;
   okText?: string;
-  boosters: {
+  boosters?: {
     // 'guru' | 'full';
     [key: string]: {
       // 'section' | 'item' | 'confirm' | "fallback"
@@ -71,7 +71,7 @@ export const goTypicalBot = (selectors: Selectors) => {
   const getCounts = () => {
     const counts = document.querySelector(selectors.counts)?.textContent;
     if (!counts) return 0;
-    return Number.parseInt(counts);
+    return Number.parseInt(counts.replace(',', ''));
   };
 
   const getIsBoosted = () => {

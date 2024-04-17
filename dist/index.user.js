@@ -28,9 +28,9 @@
 // @match        https://web.telegram.org/k/#@wmclick_bot_arbuz
 
 
-// @version      1.1.7
+// @version      1.1.8
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 16.04.2024, 17:10:14
+// @description  first release: 29.03.2024, 13:33:33, last release: 17.04.2024, 09:15:18
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -192,7 +192,7 @@ const goTypicalBot = (selectors) => {
     const counts = document.querySelector(selectors.counts)?.textContent;
     if (!counts)
       return 0;
-    return Number.parseInt(counts);
+    return Number.parseInt(counts.replace(",", ""));
   };
   const getIsBoosted = () => {
     return selectors.boosted && document.querySelector(selectors.boosted);
