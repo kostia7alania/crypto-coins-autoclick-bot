@@ -1,4 +1,15 @@
-import { arbuzApp, clixGame, doxCoin, limeCoin, mellCoin, notCoin, tapSwap, thePixels, yesCoin } from '../coins';
+import {
+  arbuzApp,
+  blumCrypto,
+  clixGame,
+  doxCoin,
+  limeCoin,
+  mellCoin,
+  notCoin,
+  tapSwap,
+  thePixels,
+  yesCoin,
+} from '../coins';
 import { goToAppFromTelegram } from '../telegram';
 
 export const appsHostMap: Record<string, [() => any, string]> = {
@@ -13,4 +24,5 @@ export const appsHostMap: Record<string, [() => any, string]> = {
   'arbuzapp.betty.games': [arbuzApp, 'https://web.telegram.org/k/#@wmclick_bot_arbuz'],
   'yescoin.click': [yesCoin, 'https://web.telegram.org/k/#@YesCoin_ebot'],
   'chukaka.github.io': [mellCoin, 'https://web.telegram.org/k/#@mellcoinsbot'],
+  'telegram.blum.codes': [blumCrypto, 'https://web.telegram.org/k/#@BlumCryptoBot'],
 };

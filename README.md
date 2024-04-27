@@ -22,6 +22,7 @@
 8. [ArbuzApp](t.me/wmclick_bot/click?startapp=ref_uZAOLgal)
 9. [YesCoin](t.me/YesCoin_ebot?start=120855841)
 10. [MellCoin](t.me/mellcoinsbot?start=120855841)
+11. [Blum](https://web.telegram.org/k/#@BlumCryptoBot)
 
 ## Feedback
 
@@ -49,3 +50,5 @@ ArbuzApp::https://t.me/wmclick_bot/click?startapp=ref_uZAOLgal
 YesCoin::https://web.telegram.org/k/#@YesCoin_ebot?start=120855841
 
 MellCoin::https://web.telegram.org/k/#@mellcoinsbot?start=120855841
+
+Blum::https://web.telegram.org/k/#@BlumCryptoBot

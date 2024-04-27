@@ -33,10 +33,13 @@
 // @match        https://chukaka.github.io/*
 // @match        https://web.telegram.org/k/#@mellcoinsbot
 
+// @match        https://telegram.blum.codes/*
+// @match        https://web.telegram.org/k/#@BlumCryptoBot
 
-// @version      1.1.8
+
+// @version      1.1.10
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 27.04.2024, 15:15:09
+// @description  first release: 29.03.2024, 13:33:33, last release: 27.04.2024, 15:45:33
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -254,29 +257,29 @@ const goTypicalBot = (selectors) => {
   setInterval(start, 3e3);
 };
 
-const selectors$6 = {
+const selectors$7 = {
   coinClick: 'button [src="/clicker/mainButton/base/button.png"]',
   counts: ".text-xl.text-white.font-medium"
 };
 const clixGame = () => {
-  goTypicalBot(selectors$6);
+  goTypicalBot(selectors$7);
 };
 
-const selectors$5 = {
+const selectors$6 = {
   coinClick: ".coin-btn",
   counts: "span.text-3xl.font-bold"
 };
 const doxCoin = () => {
-  goTypicalBot(selectors$5);
+  goTypicalBot(selectors$6);
 };
 
-const selectors$4 = {
+const selectors$5 = {
   coinClick: ".click-coin img",
   counts: ".click-limit__left",
   boosted: ".l-home.boost"
 };
 const limeCoin = () => {
-  goTypicalBot(selectors$4);
+  goTypicalBot(selectors$5);
   const url = "https://api.limecoin.online/points/receive/";
   const getParameters = (isBoost) => {
     const clicks = getRandom(1, 100);
@@ -312,7 +315,7 @@ const limeCoin = () => {
   console.log("limeCoin: если хочешь прямые апи-запросы - запускай в консоле: go() - без буста, go(true) - с бустом");
 };
 
-const selectors$3 = {
+const selectors$4 = {
   coinClick: '[class^="_tapContent"] img',
   counts: '[class^="_value_"] h4',
   boosted: '[class^="_tapContainer"]:not(.undefined)',
@@ -334,7 +337,7 @@ const selectors$3 = {
   }
 };
 const tapSwap = () => {
-  goTypicalBot(selectors$3);
+  goTypicalBot(selectors$4);
 };
 
 let isInProgress = false;
@@ -375,28 +378,37 @@ const thePixels = () => {
   setInterval(start, 3e3);
 };
 
-const selectors$2 = {
+const selectors$3 = {
   coinClick: ".game__field",
   counts: ".energy__value.current-value"
 };
 const arbuzApp = () => {
-  goTypicalBot(selectors$2);
+  goTypicalBot(selectors$3);
 };
 
-const selectors$1 = {
+const selectors$2 = {
   coinClick: ".game__field",
   counts: ".energy__value.current-value"
 };
 const yesCoin = () => {
-  goTypicalBot(selectors$1);
+  goTypicalBot(selectors$2);
 };
 
-const selectors = {
+const selectors$1 = {
   coinClick: ".coin-image",
   counts: ""
 };
 const mellCoin = () => {
+  goTypicalBot(selectors$1);
+};
+
+const selectors = {
+  coinClick: ".kit-button",
+  counts: ""
+};
+const blumCrypto = () => {
   goTypicalBot(selectors);
+  window.maxWait = 1e3 * 10;
 };
 
 const buttonTexts = [
@@ -408,8 +420,10 @@ const buttonTexts = [
   // @notcoin_bot
   "Start now!",
   // @tapswap_bot
-  "Играть"
+  "Играть",
   // @mellcoinsbot
+  "Launch Blum"
+  // @BlumCryptoBot
 ];
 const goToAppFromTelegram = () => {
   const clickPlay = () => {
@@ -458,7 +472,8 @@ const appsHostMap = {
   "the-pixels.pages.dev": [thePixels, "https://web.telegram.org/k/#@the_pixels_bot"],
   "arbuzapp.betty.games": [arbuzApp, "https://web.telegram.org/k/#@wmclick_bot_arbuz"],
   "yescoin.click": [yesCoin, "https://web.telegram.org/k/#@YesCoin_ebot"],
-  "chukaka.github.io": [mellCoin, "https://web.telegram.org/k/#@mellcoinsbot"]
+  "chukaka.github.io": [mellCoin, "https://web.telegram.org/k/#@mellcoinsbot"],
+  "telegram.blum.codes": [blumCrypto, "https://web.telegram.org/k/#@BlumCryptoBot"]
 };
 
 const urls = Object.entries(appsHostMap);
