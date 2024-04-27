@@ -11,6 +11,8 @@ const buttonTexts = [
   'Launch Blum', // @BlumCryptoBot
 ];
 
+const preventGoFullscreen = ['https://web.telegram.org/k/#@BlumCryptoBot', 'https://web.telegram.org/k/#@YesCoin_ebot'];
+
 export const goToAppFromTelegram = () => {
   /**************
    * COMMON CODE
@@ -56,9 +58,11 @@ export const goToAppFromTelegram = () => {
       return start();
     }
 
-    location.href = iframe.src
-      .replace('tgWebAppPlatform=weba', 'tgWebAppPlatform=ios')
-      .replace('tgWebAppPlatform=web', 'tgWebAppPlatform=ios');
+    if (!preventGoFullscreen.includes(location.href)) {
+      location.href = iframe.src
+        .replace('tgWebAppPlatform=weba', 'tgWebAppPlatform=ios')
+        .replace('tgWebAppPlatform=web', 'tgWebAppPlatform=ios');
+    }
   };
 
   start();
