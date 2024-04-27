@@ -2,6 +2,7 @@ import {
   arbuzApp,
   blumCrypto,
   clixGame,
+  dotCoin,
   doxCoin,
   limeCoin,
   mellCoin,
@@ -30,6 +31,7 @@ export const appsHostMap: Record<string, [() => any, string]> = {
   'yescoin.click': [yesCoin, 'https://web.telegram.org/k/#@YesCoin_ebot'],
   'chukaka.github.io': [mellCoin, 'https://web.telegram.org/k/#@mellcoinsbot'],
   'telegram.blum.codes': [blumCrypto, 'https://web.telegram.org/k/#@BlumCryptoBot'],
+  'dot.dapplab.xyz': [dotCoin, 'https://web.telegram.org/k/#@dotcoin_bot'],
 };
 
 function runInWindow() {

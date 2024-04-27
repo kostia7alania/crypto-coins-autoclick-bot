@@ -8,3 +8,4 @@ export { arbuzApp } from './arbuzApp';
 export { yesCoin } from './yesCoin';
 export { mellCoin } from './mellCoin';
 export { blumCrypto } from './blumCrypto';
+export { dotCoin } from './dotCoin';
