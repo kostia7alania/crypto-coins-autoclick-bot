@@ -69,6 +69,8 @@ export const goTypicalBot = (selectors: Selectors) => {
   };
 
   const getCounts = () => {
+    if (!selectors.counts) return Infinity;
+
     const counts = document.querySelector(selectors.counts)?.textContent;
     if (!counts) return 0;
     return Number.parseInt(counts.replace(',', ''));

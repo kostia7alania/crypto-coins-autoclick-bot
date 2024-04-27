@@ -27,10 +27,16 @@
 // @match        https://arbuzapp.betty.games/*
 // @match        https://web.telegram.org/k/#@wmclick_bot_arbuz
 
+// @match        https://yescoin.click/*
+// @match        https://web.telegram.org/k/#@YesCoin_ebot
+
+// @match        https://chukaka.github.io/*
+// @match        https://web.telegram.org/k/#@mellcoinsbot
+
 
 // @version      1.1.8
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 17.04.2024, 09:15:18
+// @description  first release: 29.03.2024, 13:33:33, last release: 27.04.2024, 15:15:09
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -189,6 +195,8 @@ const goTypicalBot = (selectors) => {
     });
   };
   const getCounts = () => {
+    if (!selectors.counts)
+      return Infinity;
     const counts = document.querySelector(selectors.counts)?.textContent;
     if (!counts)
       return 0;
@@ -246,29 +254,29 @@ const goTypicalBot = (selectors) => {
   setInterval(start, 3e3);
 };
 
-const selectors$4 = {
+const selectors$6 = {
   coinClick: 'button [src="/clicker/mainButton/base/button.png"]',
   counts: ".text-xl.text-white.font-medium"
 };
 const clixGame = () => {
-  goTypicalBot(selectors$4);
+  goTypicalBot(selectors$6);
 };
 
-const selectors$3 = {
+const selectors$5 = {
   coinClick: ".coin-btn",
   counts: "span.text-3xl.font-bold"
 };
 const doxCoin = () => {
-  goTypicalBot(selectors$3);
+  goTypicalBot(selectors$5);
 };
 
-const selectors$2 = {
+const selectors$4 = {
   coinClick: ".click-coin img",
   counts: ".click-limit__left",
   boosted: ".l-home.boost"
 };
 const limeCoin = () => {
-  goTypicalBot(selectors$2);
+  goTypicalBot(selectors$4);
   const url = "https://api.limecoin.online/points/receive/";
   const getParameters = (isBoost) => {
     const clicks = getRandom(1, 100);
@@ -304,7 +312,7 @@ const limeCoin = () => {
   console.log("limeCoin: если хочешь прямые апи-запросы - запускай в консоле: go() - без буста, go(true) - с бустом");
 };
 
-const selectors$1 = {
+const selectors$3 = {
   coinClick: '[class^="_tapContent"] img',
   counts: '[class^="_value_"] h4',
   boosted: '[class^="_tapContainer"]:not(.undefined)',
@@ -326,7 +334,7 @@ const selectors$1 = {
   }
 };
 const tapSwap = () => {
-  goTypicalBot(selectors$1);
+  goTypicalBot(selectors$3);
 };
 
 let isInProgress = false;
@@ -367,11 +375,27 @@ const thePixels = () => {
   setInterval(start, 3e3);
 };
 
-const selectors = {
+const selectors$2 = {
   coinClick: ".game__field",
   counts: ".energy__value.current-value"
 };
 const arbuzApp = () => {
+  goTypicalBot(selectors$2);
+};
+
+const selectors$1 = {
+  coinClick: ".game__field",
+  counts: ".energy__value.current-value"
+};
+const yesCoin = () => {
+  goTypicalBot(selectors$1);
+};
+
+const selectors = {
+  coinClick: ".coin-image",
+  counts: ""
+};
+const mellCoin = () => {
   goTypicalBot(selectors);
 };
 
@@ -382,8 +406,10 @@ const buttonTexts = [
   // @DOXcoin_BOT & @notcoin_bot & @tapswap_bot
   "Let’s go",
   // @notcoin_bot
-  "Start now!"
+  "Start now!",
   // @tapswap_bot
+  "Играть"
+  // @mellcoinsbot
 ];
 const goToAppFromTelegram = () => {
   const clickPlay = () => {
@@ -430,7 +456,9 @@ const appsHostMap = {
   "app.tapswap.ai": [tapSwap, "https://web.telegram.org/k/#@tapswap_bot"],
   "the-pixels-game.fireheadz.games": [thePixels, "https://web.telegram.org/k/#@the_pixels_bot"],
   "the-pixels.pages.dev": [thePixels, "https://web.telegram.org/k/#@the_pixels_bot"],
-  "arbuzapp.betty.games": [arbuzApp, "https://web.telegram.org/k/#@wmclick_bot_arbuz"]
+  "arbuzapp.betty.games": [arbuzApp, "https://web.telegram.org/k/#@wmclick_bot_arbuz"],
+  "yescoin.click": [yesCoin, "https://web.telegram.org/k/#@YesCoin_ebot"],
+  "chukaka.github.io": [mellCoin, "https://web.telegram.org/k/#@mellcoinsbot"]
 };
 
 const urls = Object.entries(appsHostMap);

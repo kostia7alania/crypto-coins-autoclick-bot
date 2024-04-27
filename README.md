@@ -10,7 +10,7 @@
 2. Установите скрипт. _(Для автоматической установки можно перейти по [этой ссылке](https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js)_
 3. Теперь при открытии сайта с коинами скрипт будет запускаться автоматически
 
-## Список лудилок (актуально на 29.3.24, обновляется)
+## Список лудилок (актуально на 27.4.24, обновляется)
 
 1. [NotCoin](https://t.me/notcoin_bot?start=r_576167_2961097)
 2. [TapSwap](https://t.me/tapswap_bot?start=r_120855841)
@@ -20,6 +20,8 @@
 6. [ClixGame](https://clix.game/?ref=6406)
 7. [ThePixelsBot](https://t.me/the_pixels_bot/play?startapp=0_a5afc8ac-f1d8-4b10-a255-570d0eb26274_2_fallback-invite)
 8. [ArbuzApp](t.me/wmclick_bot/click?startapp=ref_uZAOLgal)
+9. [YesCoin](t.me/YesCoin_ebot?start=120855841)
+10. [MellCoin](t.me/mellcoinsbot?start=120855841)
 
 ## Feedback
 
@@ -43,3 +45,7 @@ ClixGame::https://clix.game/?ref=6406
 ThePixelsBot::https://t.me/the_pixels_bot/play?startapp=0_a5afc8ac-f1d8-4b10-a255-570d0eb26274_2_fallback-invite
 
 ArbuzApp::https://t.me/wmclick_bot/click?startapp=ref_uZAOLgal
+
+YesCoin::https://web.telegram.org/k/#@YesCoin_ebot?start=120855841
+
+MellCoin::https://web.telegram.org/k/#@mellcoinsbot?start=120855841

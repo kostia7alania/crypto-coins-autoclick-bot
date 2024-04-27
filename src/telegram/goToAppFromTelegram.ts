@@ -7,6 +7,7 @@ const buttonTexts = [
   'Play', // @DOXcoin_BOT & @notcoin_bot & @tapswap_bot
   'Let’s go', // @notcoin_bot
   'Start now!', // @tapswap_bot
+  'Играть', // @mellcoinsbot
 ];
 
 export const goToAppFromTelegram = () => {
