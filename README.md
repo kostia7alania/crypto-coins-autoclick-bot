@@ -31,24 +31,24 @@
 
 # Добавить в закладки + в стартовые в Anty Browser:
 
-NotCoin::https://t.me/notcoin_bot?start=r_576167_2961097
+NotCoin::https://web.telegram.org/k/#@notcoin_bot
 
-LimeСoin::https://t.me/OfficialLimeCoinBot?start=120855841
+LimeСoin::https://web.telegram.org/k/#@OfficialLimeCoinBot
 
-TapSwap::https://t.me/tapswap_bot?start=r_120855841
+TapSwap::https://web.telegram.org/k/#@tapswap_bot
 
-DotCoin::https://t.me/dotcoin_bot?start=r_120855841
+DotCoin::https://web.telegram.org/k/#@dotcoin_bot
 
-DoxCoin::https://t.me/DOXcoin_BOT?start=rl_120855841
+DoxCoin::https://web.telegram.org/k/#@DOXcoin_BOT
 
 ClixGame::https://clix.game/?ref=6406
 
-ThePixelsBot::https://t.me/the_pixels_bot/play?startapp=0_a5afc8ac-f1d8-4b10-a255-570d0eb26274_2_fallback-invite
+ThePixelsBot::https://web.telegram.org/k/#@the_pixels_bot
 
-ArbuzApp::https://t.me/wmclick_bot/click?startapp=ref_uZAOLgal
+ArbuzApp::https://web.telegram.org/k/#@wmclick_bot
 
-YesCoin::https://web.telegram.org/k/#@YesCoin_ebot?start=120855841
+YesCoin::https://web.telegram.org/k/#@YesCoin_ebot
 
-MellCoin::https://web.telegram.org/k/#@mellcoinsbot?start=120855841
+MellCoin::https://web.telegram.org/k/#@mellcoinsbot
 
 Blum::https://web.telegram.org/k/#@BlumCryptoBot
