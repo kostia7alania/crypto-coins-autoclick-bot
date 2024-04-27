@@ -1,3 +1,4 @@
+import { preventGoFullScreen } from '../hostMap/appsHostMap';
 import { getWait } from '../utils/getWait';
 import { simulateMouseClick } from '../utils/simulateMouseClick';
 import { simulateTouch } from '../utils/simulateTouch';
@@ -11,9 +12,7 @@ const buttonTexts = [
   'Launch Blum', // @BlumCryptoBot
 ];
 
-const preventGoFullscreen = ['https://web.telegram.org/k/#@BlumCryptoBot', 'https://web.telegram.org/k/#@YesCoin_ebot'];
-
-export const goToAppFromTelegram = () => {
+export const goToAppFromTelegram = (maybeCallbacks: () => (() => void)[]) => {
   /**************
    * COMMON CODE
    **************/
@@ -58,11 +57,13 @@ export const goToAppFromTelegram = () => {
       return start();
     }
 
-    if (!preventGoFullscreen.includes(location.href)) {
+    if (!preventGoFullScreen.includes(location.href)) {
       location.href = iframe.src
         .replace('tgWebAppPlatform=weba', 'tgWebAppPlatform=ios')
         .replace('tgWebAppPlatform=web', 'tgWebAppPlatform=ios');
     }
+
+    maybeCallbacks().forEach((callback) => callback());
   };
 
   start();

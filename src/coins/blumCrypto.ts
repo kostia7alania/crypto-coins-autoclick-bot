@@ -7,5 +7,5 @@ const selectors = {
 
 export const blumCrypto = () => {
   goTypicalBot(selectors);
-  window.maxWait = 1000 * 10;
+  window.maxWait = 1000 * 60;
 };

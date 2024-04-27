@@ -1,8 +1,8 @@
 import { goTypicalBot } from '../utils/typicalBot';
 
 const selectors = {
-  coinClick: '.game__field',
-  counts: '.energy__value.current-value',
+  coinClick: 'img[alt="Clicker Coin"]',
+  counts: 'app-player-energy .typo-number > span',
 };
 
 export const yesCoin = () => {

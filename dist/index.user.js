@@ -37,9 +37,9 @@
 // @match        https://web.telegram.org/k/#@BlumCryptoBot
 
 
-// @version      1.1.11
+// @version      1.1.12
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 27.04.2024, 15:49:34
+// @description  first release: 29.03.2024, 13:33:33, last release: 27.04.2024, 16:19:36
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -387,8 +387,8 @@ const arbuzApp = () => {
 };
 
 const selectors$2 = {
-  coinClick: ".game__field",
-  counts: ".energy__value.current-value"
+  coinClick: 'img[alt="Clicker Coin"]',
+  counts: "app-player-energy .typo-number > span"
 };
 const yesCoin = () => {
   goTypicalBot(selectors$2);
@@ -408,7 +408,7 @@ const selectors = {
 };
 const blumCrypto = () => {
   goTypicalBot(selectors);
-  window.maxWait = 1e3 * 10;
+  window.maxWait = 1e3 * 60;
 };
 
 const buttonTexts = [
@@ -425,8 +425,7 @@ const buttonTexts = [
   "Launch Blum"
   // @BlumCryptoBot
 ];
-const preventGoFullscreen = ["https://web.telegram.org/k/#@BlumCryptoBot", "https://web.telegram.org/k/#@YesCoin_ebot"];
-const goToAppFromTelegram = () => {
+const goToAppFromTelegram = (maybeCallbacks) => {
   const clickPlay = () => {
     [...document.querySelectorAll("button")].find((e) => {
       const content = e.textContent;
@@ -457,15 +456,20 @@ const goToAppFromTelegram = () => {
       console.info("%c хуйня какая-то, начинай по новой", "color: #64b5f6");
       return start();
     }
-    if (!preventGoFullscreen.includes(location.href)) {
+    if (!preventGoFullScreen.includes(location.href)) {
       location.href = iframe.src.replace("tgWebAppPlatform=weba", "tgWebAppPlatform=ios").replace("tgWebAppPlatform=web", "tgWebAppPlatform=ios");
     }
+    maybeCallbacks().forEach((callback) => callback());
   };
   start();
 };
 
+const preventGoFullScreen = [
+  "https://web.telegram.org/k/#@BlumCryptoBot",
+  "https://web.telegram.org/k/#@YesCoin_ebot"
+];
 const appsHostMap = {
-  "web.telegram.org": [goToAppFromTelegram, ""],
+  "web.telegram.org": [goToAppFromTelegram.bind(null, runInWindow), ""],
   "webapp.limecoin.online": [limeCoin, "https://web.telegram.org/k/#@OfficialLimeCoinBot"],
   "doxcoin.net": [doxCoin, "https://web.telegram.org/k/#@DOXcoin_BOT"],
   "clicker.joincommunity.xyz": [notCoin, "https://web.telegram.org/k/#@notcoin_bot"],
@@ -478,6 +482,9 @@ const appsHostMap = {
   "chukaka.github.io": [mellCoin, "https://web.telegram.org/k/#@mellcoinsbot"],
   "telegram.blum.codes": [blumCrypto, "https://web.telegram.org/k/#@BlumCryptoBot"]
 };
+function runInWindow() {
+  return Object.values(appsHostMap).filter(([_, url]) => preventGoFullScreen.includes(url)).map(([callback]) => callback);
+}
 
 const urls = Object.entries(appsHostMap);
 const getMatchesFromMap = () => {

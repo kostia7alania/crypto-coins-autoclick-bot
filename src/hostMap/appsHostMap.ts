@@ -12,8 +12,13 @@ import {
 } from '../coins';
 import { goToAppFromTelegram } from '../telegram';
 
+export const preventGoFullScreen = [
+  'https://web.telegram.org/k/#@BlumCryptoBot',
+  'https://web.telegram.org/k/#@YesCoin_ebot',
+];
+
 export const appsHostMap: Record<string, [() => any, string]> = {
-  'web.telegram.org': [goToAppFromTelegram, ''],
+  'web.telegram.org': [goToAppFromTelegram.bind(null, runInWindow), ''],
   'webapp.limecoin.online': [limeCoin, 'https://web.telegram.org/k/#@OfficialLimeCoinBot'],
   'doxcoin.net': [doxCoin, 'https://web.telegram.org/k/#@DOXcoin_BOT'],
   'clicker.joincommunity.xyz': [notCoin, 'https://web.telegram.org/k/#@notcoin_bot'],
@@ -26,3 +31,9 @@ export const appsHostMap: Record<string, [() => any, string]> = {
   'chukaka.github.io': [mellCoin, 'https://web.telegram.org/k/#@mellcoinsbot'],
   'telegram.blum.codes': [blumCrypto, 'https://web.telegram.org/k/#@BlumCryptoBot'],
 };
+
+function runInWindow() {
+  return Object.values(appsHostMap)
+    .filter(([_, url]) => preventGoFullScreen.includes(url))
+    .map(([callback]) => callback);
+}

@@ -1,4 +1,4 @@
-import { appsHostMap } from '@/hostMap';
+import { appsHostMap } from './hostMap';
 
 // import { initVueApp } from './ui/main';
 
