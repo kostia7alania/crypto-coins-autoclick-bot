@@ -9,7 +9,7 @@ let count = 0;
 export const thePixels = () => {
   const anyClick = () => {
     const found = [...document.querySelectorAll('[class^="BlackButtonStyled"]:not(:disabled)')].find((e) => {
-      return ['Push', 'Grab', 'Next Pixel'].find((text) => e.textContent?.includes(text));
+      return ['Push', 'Grab', 'Next Pixel','Закрасить'].find((text) => e.textContent?.includes(text));
     }) as HTMLElement | undefined;
 
     if (!found) return false;
