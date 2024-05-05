@@ -42,7 +42,7 @@
 
 // @version      1.1.13
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 06.05.2024, 00:50:29
+// @description  first release: 29.03.2024, 13:33:33, last release: 06.05.2024, 01:14:16
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -433,8 +433,10 @@ const buttonTexts = [
   // @tapswap_bot
   "Играть",
   // @mellcoinsbot
-  "Launch Blum"
+  "Launch Blum",
   // @BlumCryptoBot
+  "Back to Dotcoin"
+  // @dotcoin_bot
 ];
 const goToAppFromTelegram = (maybeCallbacks) => {
   const clickPlay = () => {
