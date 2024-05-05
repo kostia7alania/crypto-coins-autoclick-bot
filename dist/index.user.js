@@ -15,7 +15,7 @@
 // @match        https://clix.game/*
 // @match        https://clix.game/
 
-// @match        https://app.tapswap.ai/*
+// @match        https://app.tapswap.club/*
 // @match        https://web.telegram.org/k/#@tapswap_bot
 
 // @match        https://the-pixels-game.fireheadz.games/*
@@ -25,7 +25,7 @@
 // @match        https://web.telegram.org/k/#@the_pixels_bot
 
 // @match        https://arbuzapp.betty.games/*
-// @match        https://web.telegram.org/k/#@wmclick_bot_arbuz
+// @match        https://web.telegram.org/k/#@wmclick_bot
 
 // @match        https://yescoin.click/*
 // @match        https://web.telegram.org/k/#@YesCoin_ebot
@@ -42,7 +42,7 @@
 
 // @version      1.1.13
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 27.04.2024, 16:47:10
+// @description  first release: 29.03.2024, 13:33:33, last release: 06.05.2024, 01:14:16
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -348,7 +348,7 @@ let count = 0;
 const thePixels = () => {
   const anyClick = () => {
     const found = [...document.querySelectorAll('[class^="BlackButtonStyled"]:not(:disabled)')].find((e) => {
-      return ["Push", "Grab", "Next Pixel"].find((text) => e.textContent?.includes(text));
+      return ["Push", "Grab", "Next Pixel", "Закрасить"].find((text) => e.textContent?.includes(text));
     });
     if (!found)
       return false;
@@ -433,8 +433,10 @@ const buttonTexts = [
   // @tapswap_bot
   "Играть",
   // @mellcoinsbot
-  "Launch Blum"
+  "Launch Blum",
   // @BlumCryptoBot
+  "Back to Dotcoin"
+  // @dotcoin_bot
 ];
 const goToAppFromTelegram = (maybeCallbacks) => {
   const clickPlay = () => {
@@ -485,10 +487,10 @@ const appsHostMap = {
   "doxcoin.net": [doxCoin, "https://web.telegram.org/k/#@DOXcoin_BOT"],
   "clicker.joincommunity.xyz": [notCoin, "https://web.telegram.org/k/#@notcoin_bot"],
   "clix.game": [clixGame, "https://clix.game/"],
-  "app.tapswap.ai": [tapSwap, "https://web.telegram.org/k/#@tapswap_bot"],
+  "app.tapswap.club": [tapSwap, "https://web.telegram.org/k/#@tapswap_bot"],
   "the-pixels-game.fireheadz.games": [thePixels, "https://web.telegram.org/k/#@the_pixels_bot"],
   "the-pixels.pages.dev": [thePixels, "https://web.telegram.org/k/#@the_pixels_bot"],
-  "arbuzapp.betty.games": [arbuzApp, "https://web.telegram.org/k/#@wmclick_bot_arbuz"],
+  "arbuzapp.betty.games": [arbuzApp, "https://web.telegram.org/k/#@wmclick_bot"],
   "yescoin.click": [yesCoin, "https://web.telegram.org/k/#@YesCoin_ebot"],
   "chukaka.github.io": [mellCoin, "https://web.telegram.org/k/#@mellcoinsbot"],
   "telegram.blum.codes": [blumCrypto, "https://web.telegram.org/k/#@BlumCryptoBot"],
