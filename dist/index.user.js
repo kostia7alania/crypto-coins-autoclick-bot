@@ -42,7 +42,7 @@
 
 // @version      1.1.13
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 06.05.2024, 01:14:16
+// @description  first release: 29.03.2024, 13:33:33, last release: 06.05.2024, 10:30:37
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -348,7 +348,7 @@ let count = 0;
 const thePixels = () => {
   const anyClick = () => {
     const found = [...document.querySelectorAll('[class^="BlackButtonStyled"]:not(:disabled)')].find((e) => {
-      return ["Push", "Grab", "Next Pixel", "Закрасить"].find((text) => e.textContent?.includes(text));
+      return ["Push", "Grab", "Next Pixel", "Закрасить", "Pixel"].find((text) => e.textContent?.includes(text));
     });
     if (!found)
       return false;
