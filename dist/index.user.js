@@ -42,7 +42,7 @@
 
 // @version      1.1.13
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 06.05.2024, 12:25:42
+// @description  first release: 29.03.2024, 13:33:33, last release: 06.05.2024, 12:28:06
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -479,8 +479,7 @@ const goToAppFromTelegram = (maybeCallbacks) => {
 
 const preventGoFullScreen = [
   "https://web.telegram.org/k/#@BlumCryptoBot",
-  "https://web.telegram.org/k/#@YesCoin_ebot",
-  "https://web.telegram.org/k/#@the_pixels_bot"
+  "https://web.telegram.org/k/#@YesCoin_ebot"
 ];
 const appsHostMap = {
   "web.telegram.org": [goToAppFromTelegram.bind(null, runInWindow), ""],
