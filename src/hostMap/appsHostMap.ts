@@ -16,6 +16,7 @@ import { goToAppFromTelegram } from '../telegram';
 export const preventGoFullScreen = [
   'https://web.telegram.org/k/#@BlumCryptoBot',
   'https://web.telegram.org/k/#@YesCoin_ebot',
+  'https://web.telegram.org/k/#@the_pixels_bot',
 ];
 
 export const appsHostMap: Record<string, [() => any, string]> = {
