@@ -43,9 +43,9 @@
 // @match        https://web.telegram.org/k/#@dotcoin_bot
 
 
-// @version      1.1.13
+// @version      1.1.14
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 07.05.2024, 21:17:56
+// @description  first release: 29.03.2024, 13:33:33, last release: 07.05.2024, 21:18:46
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
