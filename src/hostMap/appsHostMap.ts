@@ -6,6 +6,7 @@ import {
   doxCoin,
   limeCoin,
   mellCoin,
+  alcoCoin,
   notCoin,
   tapSwap,
   thePixels,
@@ -30,6 +31,7 @@ export const appsHostMap: Record<string, [() => any, string]> = {
   'arbuzapp.betty.games': [arbuzApp, 'https://web.telegram.org/k/#@wmclick_bot'],
   'yescoin.click': [yesCoin, 'https://web.telegram.org/k/#@YesCoin_ebot'],
   'chukaka.github.io': [mellCoin, 'https://web.telegram.org/k/#@mellcoinsbot'],
+  'morgencoinapp-981c4.web.app': [alcoCoin, 'https://web.telegram.org/k/#@alcocoin_bot'],
   'telegram.blum.codes': [blumCrypto, 'https://web.telegram.org/k/#@BlumCryptoBot'],
   'dot.dapplab.xyz': [dotCoin, 'https://web.telegram.org/k/#@dotcoin_bot'],
 };
