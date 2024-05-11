@@ -8,9 +8,10 @@ let count = 0;
 
 export const thePixels = () => {
   const anyClick = () => {
-    const found = [...document.querySelectorAll('[class^="BlackButtonStyled"]:not(:disabled)')].find((e) => {
-      return ['Push', 'Grab', 'Next Pixel','Закрасить','Pixel'].find((text) => e.textContent?.includes(text));
-    }) as HTMLElement | undefined;
+    const found = document.evaluate('//*[@id="root"]/div/div/div[4]/div[4]/button[3]',document,
+    null,
+    XPathResult.FIRST_ORDERED_NODE_TYPE,
+    null).singleNodeValue as HTMLElement | undefined;
 
     if (!found) return false;
     simulateMouseClick(found);
