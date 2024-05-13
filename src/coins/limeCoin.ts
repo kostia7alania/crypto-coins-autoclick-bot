@@ -1,4 +1,5 @@
 import { getRandom } from '../utils/getRandom';
+import { getWait } from '../utils/getWait';
 import { goTypicalBot } from '../utils/typicalBot';
 
 const selectors = {
@@ -9,15 +10,46 @@ const selectors = {
 
 declare const window: {
   AuthorizationHeaderLimeCoin: string | null;
-  go: () => void;
+  goLimeCoin: () => void;
 };
 
 // const getCoinButton = () => document.querySelector('.click-coin img');
 // const limit = ( => document.querySelector('.click-limit__left')
 
+let hasBoost = true;
+
+const getBoost = async () => {
+  if (!hasBoost) return;
+
+  const getIsBoosted = () => document.querySelector(selectors.boosted);
+  const getRocketButton = () => document.querySelector('[alt="flash"]') as HTMLElement;
+  const getBoostCount = () => document.querySelector('.list-item__coins') as HTMLElement;
+  const getBoostTrigger = getBoostCount;
+
+  if (!getRocketButton() || getIsBoosted()) {
+    await getWait(3000);
+    getBoost();
+    return;
+  }
+
+  getRocketButton()?.click();
+
+  await getWait(3000);
+
+  if (Number.parseInt(getBoostCount()?.textContent ?? '0') === 0) {
+    hasBoost = false;
+  }
+
+  getBoostTrigger()?.click();
+
+  await getWait(18 * 1000); // 15 sec
+
+  getBoost();
+};
+
 export const limeCoin = () => {
   goTypicalBot(selectors);
-
+  getBoost();
   /**
    * Direct API way:
    */
@@ -49,7 +81,7 @@ export const limeCoin = () => {
     });
   };
 
-  const go = async (isBoost?: boolean) => {
+  const goLimeCoinDirect = async (isBoost?: boolean) => {
     if (!window.AuthorizationHeaderLimeCoin) {
       window.AuthorizationHeaderLimeCoin = prompt('Пожалуйста, скопируйте Authorization-хедер в запросах limeCoin');
 
@@ -65,7 +97,7 @@ export const limeCoin = () => {
     }
   };
 
-  window.go = go;
+  window.goLimeCoin = goLimeCoinDirect;
   console.log('limeCoin: если хочешь прямые апи-запросы - запускай в консоле: go() - без буста, go(true) - с бустом');
   // go(true); // with booster
   // go(false); // without booster

@@ -43,9 +43,9 @@
 // @match        https://web.telegram.org/k/#@dotcoin_bot
 
 
-// @version      1.1.14
+// @version      1.1.15
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 07.05.2024, 21:18:46
+// @description  first release: 29.03.2024, 13:33:33, last release: 13.05.2024, 10:53:56
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -284,8 +284,31 @@ const selectors$6 = {
   counts: ".click-limit__left",
   boosted: ".l-home.boost"
 };
+let hasBoost = true;
+const getBoost = async () => {
+  if (!hasBoost)
+    return;
+  const getIsBoosted = () => document.querySelector(selectors$6.boosted);
+  const getRocketButton = () => document.querySelector('[alt="flash"]');
+  const getBoostCount = () => document.querySelector(".list-item__coins");
+  const getBoostTrigger = getBoostCount;
+  if (!getRocketButton() || getIsBoosted()) {
+    await getWait(3e3);
+    getBoost();
+    return;
+  }
+  getRocketButton()?.click();
+  await getWait(3e3);
+  if (Number.parseInt(getBoostCount()?.textContent ?? "0") === 0) {
+    hasBoost = false;
+  }
+  getBoostTrigger()?.click();
+  await getWait(18 * 1e3);
+  getBoost();
+};
 const limeCoin = () => {
   goTypicalBot(selectors$6);
+  getBoost();
   const url = "https://api.limecoin.online/points/receive/";
   const getParameters = (isBoost) => {
     const clicks = getRandom(1, 100);
@@ -304,7 +327,7 @@ const limeCoin = () => {
       });
     });
   };
-  const go = async (isBoost) => {
+  const goLimeCoinDirect = async (isBoost) => {
     if (!window.AuthorizationHeaderLimeCoin) {
       window.AuthorizationHeaderLimeCoin = prompt("Пожалуйста, скопируйте Authorization-хедер в запросах limeCoin");
       if (!window.AuthorizationHeaderLimeCoin) {
@@ -317,7 +340,7 @@ const limeCoin = () => {
       console.log(`[${isBoost ? "boost" : "regular"}] request sent: ${++count}`);
     }
   };
-  window.go = go;
+  window.goLimeCoin = goLimeCoinDirect;
   console.log("limeCoin: если хочешь прямые апи-запросы - запускай в консоле: go() - без буста, go(true) - с бустом");
 };
 
