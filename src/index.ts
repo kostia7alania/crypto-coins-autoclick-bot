@@ -14,3 +14,5 @@ const __main_def__ = async () => {
 };
 
 __main_def__();
+
+setTimeout(location.reload, 3 * 1000 * 60 * 60); // reload every 3 hours
