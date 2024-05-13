@@ -10,6 +10,8 @@ const buttonTexts = [
   'Start now!', // @tapswap_bot
   'Играть', // @mellcoinsbot
   'Launch Blum', // @BlumCryptoBot
+  'Explore your frens', // @BlumCryptoBot
+  'LAUNCH APP', // @BlumCryptoBot
 ];
 
 export const goToAppFromTelegram = (maybeCallbacks: () => (() => void)[]) => {
