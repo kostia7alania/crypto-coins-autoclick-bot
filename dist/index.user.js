@@ -28,7 +28,7 @@
 // @match        https://web.telegram.org/k/#@the_pixels_bot
 
 // @match        https://arbuzapp.betty.games/*
-// @match        https://web.telegram.org/k/#@wmclick_bot_arbuz
+// @match        https://web.telegram.org/k/#@wmclick_bot
 
 // @match        https://yescoin.click/*
 // @match        https://web.telegram.org/k/#@YesCoin_ebot
@@ -43,9 +43,9 @@
 // @match        https://web.telegram.org/k/#@dotcoin_bot
 
 
-// @version      1.1.17
+// @version      1.1.18
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 13.05.2024, 11:10:35
+// @description  first release: 29.03.2024, 13:33:33, last release: 31.05.2024, 13:30:10
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -519,7 +519,7 @@ const appsHostMap = {
   "app.tapswap.club": [tapSwap, "https://web.telegram.org/k/#@tapswap_bot"],
   "the-pixels-game.fireheadz.games": [thePixels, "https://web.telegram.org/k/#@the_pixels_bot"],
   "the-pixels.pages.dev": [thePixels, "https://web.telegram.org/k/#@the_pixels_bot"],
-  "arbuzapp.betty.games": [arbuzApp, "https://web.telegram.org/k/#@wmclick_bot_arbuz"],
+  "arbuzapp.betty.games": [arbuzApp, "https://web.telegram.org/k/#@wmclick_bot"],
   "yescoin.click": [yesCoin, "https://web.telegram.org/k/#@YesCoin_ebot"],
   "chukaka.github.io": [mellCoin, "https://web.telegram.org/k/#@mellcoinsbot"],
   "telegram.blum.codes": [blumCrypto, "https://web.telegram.org/k/#@BlumCryptoBot"],

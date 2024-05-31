@@ -28,7 +28,7 @@ export const appsHostMap: Record<string, [() => any, string]> = {
   'app.tapswap.club': [tapSwap, 'https://web.telegram.org/k/#@tapswap_bot'],
   'the-pixels-game.fireheadz.games': [thePixels, 'https://web.telegram.org/k/#@the_pixels_bot'],
   'the-pixels.pages.dev': [thePixels, 'https://web.telegram.org/k/#@the_pixels_bot'],
-  'arbuzapp.betty.games': [arbuzApp, 'https://web.telegram.org/k/#@wmclick_bot_arbuz'],
+  'arbuzapp.betty.games': [arbuzApp, 'https://web.telegram.org/k/#@wmclick_bot'],
   'yescoin.click': [yesCoin, 'https://web.telegram.org/k/#@YesCoin_ebot'],
   'chukaka.github.io': [mellCoin, 'https://web.telegram.org/k/#@mellcoinsbot'],
   'telegram.blum.codes': [blumCrypto, 'https://web.telegram.org/k/#@BlumCryptoBot'],
