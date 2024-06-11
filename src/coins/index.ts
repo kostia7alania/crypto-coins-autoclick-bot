@@ -9,3 +9,4 @@ export { yesCoin } from './yesCoin';
 export { mellCoin } from './mellCoin';
 export { blumCrypto } from './blumCrypto';
 export { dotCoin } from './dotCoin';
+export { hamsterCoin } from './hamsterCoin';

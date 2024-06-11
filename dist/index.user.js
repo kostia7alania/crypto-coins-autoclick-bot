@@ -42,10 +42,13 @@
 // @match        https://dot.dapplab.xyz/*
 // @match        https://web.telegram.org/k/#@dotcoin_bot
 
+// @match        https://hamsterkombat.io/*
+// @match        https://web.telegram.org/k/#@hamster_kombat_bot
 
-// @version      1.1.18
+
+// @version      1.1.19
 // @author       t.me/dvachers_space
-// @description  first release: 29.03.2024, 13:33:33, last release: 31.05.2024, 13:30:10
+// @description  first release: 29.03.2024, 13:33:33, last release: 11.06.2024, 15:15:52
 // @downloadURL  https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @updateURL    https://github.com/kostia7alania/crypto-coins-autoclick-bot/raw/main/dist/index.user.js
 // @homepage     https://github.com/kostia7alania/crypto-coins-autoclick-bot
@@ -219,10 +222,10 @@ const goTypicalBot = (selectors) => {
     //
   };
   const applyBoost = async (section) => {
-    if (isBoostInProgress || temporaryBlockedBoostSections[section])
-      return;
     const boosterItem = selectors?.boosters?.[section];
     if (!boosterItem)
+      return;
+    if (isBoostInProgress || temporaryBlockedBoostSections[section])
       return;
     try {
       isBoostInProgress = true;
@@ -230,10 +233,12 @@ const goTypicalBot = (selectors) => {
       await getWait(3e3);
       if (!clickByText(boosterItem.item.selector, boosterItem.item.text)) {
         temporaryBlockedBoostSections[section] = true;
-        setTimeout(() => temporaryBlockedBoostSections[section] = false, 1e5);
+        setTimeout(() => temporaryBlockedBoostSections[section] = false, 1e4);
       }
       await getWait(3e3);
-      clickByText(boosterItem.confirm.selector, boosterItem.confirm.text);
+      if (clickByText(boosterItem.confirm.selector, boosterItem.confirm.text)) {
+        setTimeout(() => temporaryBlockedBoostSections[section] = false, 1e5);
+      }
       await getWait(3e3);
     } finally {
       isBoostInProgress = false;
@@ -257,29 +262,30 @@ const goTypicalBot = (selectors) => {
       isInProgress$1 = false;
     }
     if (selectors?.boosters) {
+      console.log("after selectors?.boosters", selectors?.boosters);
       Object.keys(selectors?.boosters).forEach(applyBoost);
     }
   };
   setInterval(start, 3e3);
 };
 
-const selectors$8 = {
+const selectors$9 = {
   coinClick: 'button [src="/clicker/mainButton/base/button.png"]',
   counts: ".text-xl.text-white.font-medium"
 };
 const clixGame = () => {
-  goTypicalBot(selectors$8);
+  goTypicalBot(selectors$9);
 };
 
-const selectors$7 = {
+const selectors$8 = {
   coinClick: ".coin-btn",
   counts: "span.text-3xl.font-bold"
 };
 const doxCoin = () => {
-  goTypicalBot(selectors$7);
+  goTypicalBot(selectors$8);
 };
 
-const selectors$6 = {
+const selectors$7 = {
   coinClick: ".click-coin img",
   counts: ".click-limit__left",
   boosted: ".l-home.boost"
@@ -288,7 +294,7 @@ let hasBoost = true;
 const getBoost = async () => {
   if (!hasBoost)
     return;
-  const getIsBoosted = () => document.querySelector(selectors$6.boosted);
+  const getIsBoosted = () => document.querySelector(selectors$7.boosted);
   const getRocketButton = () => document.querySelector('[alt="flash"]');
   const getBoostCount = () => document.querySelector(".list-item__coins");
   const getBoostTrigger = getBoostCount;
@@ -307,7 +313,7 @@ const getBoost = async () => {
   getBoost();
 };
 const limeCoin = () => {
-  goTypicalBot(selectors$6);
+  goTypicalBot(selectors$7);
   getBoost();
   const url = "https://api.limecoin.online/points/receive/";
   const getParameters = (isBoost) => {
@@ -344,7 +350,7 @@ const limeCoin = () => {
   console.log("limeCoin: если хочешь прямые апи-запросы - запускай в консоле: go() - без буста, go(true) - с бустом");
 };
 
-const selectors$5 = {
+const selectors$6 = {
   coinClick: '[class^="_tapContent"] img',
   counts: '[class^="_value_"] h4',
   boosted: '[class^="_tapContainer"]:not(.undefined)',
@@ -366,7 +372,7 @@ const selectors$5 = {
   }
 };
 const tapSwap = () => {
-  goTypicalBot(selectors$5);
+  goTypicalBot(selectors$6);
 };
 
 let isInProgress = false;
@@ -407,44 +413,60 @@ const thePixels = () => {
   setInterval(start, 3e3);
 };
 
-const selectors$4 = {
+const selectors$5 = {
   coinClick: ".game__field",
   counts: ".energy__value.current-value"
 };
 const arbuzApp = () => {
-  goTypicalBot(selectors$4);
+  goTypicalBot(selectors$5);
 };
 
-const selectors$3 = {
+const selectors$4 = {
   coinClick: 'img[alt="Clicker Coin"]',
   counts: "app-player-energy .typo-number > span"
 };
 const yesCoin = () => {
-  goTypicalBot(selectors$3);
+  goTypicalBot(selectors$4);
 };
 
-const selectors$2 = {
+const selectors$3 = {
   coinClick: ".coin-image",
   counts: ""
 };
 const mellCoin = () => {
-  goTypicalBot(selectors$2);
+  goTypicalBot(selectors$3);
 };
 
-const selectors$1 = {
+const selectors$2 = {
   coinClick: ".kit-button",
   counts: ""
 };
 const blumCrypto = () => {
-  goTypicalBot(selectors$1);
+  goTypicalBot(selectors$2);
   window.maxWait = 1e3 * 60;
 };
 
-const selectors = {
+const selectors$1 = {
   coinClick: ".ClickerCoinDot",
   counts: ""
 };
 const dotCoin = () => {
+  goTypicalBot(selectors$1);
+};
+
+const selectors = {
+  coinClick: ".user-tap-button",
+  counts: ".user-tap-energy",
+  boosters: {
+    full: {
+      section: { selector: ".user-tap-boost", text: "Boost" },
+      item: { selector: ".boost-item:not(.is-not-available)", text: "Full energy" },
+      confirm: { selector: ".bottom-sheet-button", text: "" },
+      fallback: { selector: "button", text: "Tap" }
+    }
+  }
+};
+const hamsterCoin = () => {
   goTypicalBot(selectors);
 };
 
@@ -523,7 +545,8 @@ const appsHostMap = {
   "yescoin.click": [yesCoin, "https://web.telegram.org/k/#@YesCoin_ebot"],
   "chukaka.github.io": [mellCoin, "https://web.telegram.org/k/#@mellcoinsbot"],
   "telegram.blum.codes": [blumCrypto, "https://web.telegram.org/k/#@BlumCryptoBot"],
-  "dot.dapplab.xyz": [dotCoin, "https://web.telegram.org/k/#@dotcoin_bot"]
+  "dot.dapplab.xyz": [dotCoin, "https://web.telegram.org/k/#@dotcoin_bot"],
+  "hamsterkombat.io": [hamsterCoin, "https://web.telegram.org/k/#@hamster_kombat_bot"]
 };
 function runInWindow() {
   return Object.values(appsHostMap).filter(([_, url]) => preventGoFullScreen.includes(url)).map(([callback]) => callback);

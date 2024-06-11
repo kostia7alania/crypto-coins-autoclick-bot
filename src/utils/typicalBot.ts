@@ -90,11 +90,11 @@ export const goTypicalBot = (selectors: Selectors) => {
   };
 
   const applyBoost = async (section: string) => {
-    if (isBoostInProgress || temporaryBlockedBoostSections[section]) return;
-
     const boosterItem = selectors?.boosters?.[section];
 
     if (!boosterItem) return;
+
+    if (isBoostInProgress || temporaryBlockedBoostSections[section]) return;
 
     try {
       isBoostInProgress = true;
@@ -105,10 +105,14 @@ export const goTypicalBot = (selectors: Selectors) => {
 
       if (!clickByText(boosterItem.item.selector, boosterItem.item.text)) {
         temporaryBlockedBoostSections[section] = true;
-        setTimeout(() => (temporaryBlockedBoostSections[section] = false), 100_000);
+        // if didn't find - wait next after 10 sec
+        setTimeout(() => (temporaryBlockedBoostSections[section] = false), 10_000);
       }
       await getWait(3_000);
-      clickByText(boosterItem.confirm.selector, boosterItem.confirm.text);
+      if (clickByText(boosterItem.confirm.selector, boosterItem.confirm.text)) {
+        // if success - wait next after 100 sec
+        setTimeout(() => (temporaryBlockedBoostSections[section] = false), 100_000);
+      }
       await getWait(3_000);
     } finally {
       isBoostInProgress = false;
@@ -139,6 +143,8 @@ export const goTypicalBot = (selectors: Selectors) => {
     }
 
     if (selectors?.boosters) {
+      console.log('after selectors?.boosters', selectors?.boosters);
+
       Object.keys(selectors?.boosters).forEach(applyBoost);
     }
   };

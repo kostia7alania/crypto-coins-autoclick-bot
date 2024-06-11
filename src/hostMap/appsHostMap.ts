@@ -4,6 +4,7 @@ import {
   clixGame,
   dotCoin,
   doxCoin,
+  hamsterCoin,
   limeCoin,
   mellCoin,
   notCoin,
@@ -33,6 +34,7 @@ export const appsHostMap: Record<string, [() => any, string]> = {
   'chukaka.github.io': [mellCoin, 'https://web.telegram.org/k/#@mellcoinsbot'],
   'telegram.blum.codes': [blumCrypto, 'https://web.telegram.org/k/#@BlumCryptoBot'],
   'dot.dapplab.xyz': [dotCoin, 'https://web.telegram.org/k/#@dotcoin_bot'],
+  'hamsterkombat.io': [hamsterCoin, 'https://web.telegram.org/k/#@hamster_kombat_bot'],
 };
 
 function runInWindow() {

@@ -23,6 +23,7 @@
 9. [YesCoin](t.me/YesCoin_ebot?start=120855841)
 10. [MellCoin](t.me/mellcoinsbot?start=120855841)
 11. [Blum](https://web.telegram.org/k/#@BlumCryptoBot)
+12. [Hamster](https://t.me/hamster_Kombat_bot/start?startapp=kentId120855841)
 
 ## Feedback
 
@@ -52,3 +53,5 @@ YesCoin::https://web.telegram.org/k/#@YesCoin_ebot
 MellCoin::https://web.telegram.org/k/#@mellcoinsbot
 
 Blum::https://web.telegram.org/k/#@BlumCryptoBot
+
+Hamster::https://web.telegram.org/k/#@hamster_kombat_bot
